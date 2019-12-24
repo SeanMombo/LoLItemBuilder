@@ -1,0 +1,74 @@
+
+.grid {
+    display: grid;
+    grid-template-columns: 300px auto 300px;
+    grid-gap: 1em;
+}
+
+header, footer {
+    grid-column: 1 / 4;
+}
+
+@media all and (max-width: 800px) {
+    aside,
+    article {
+        grid-column: 1 / 4;
+    }
+}
+
+
+/* Demo Specific Styles */
+body {
+    margin: 0 auto;
+}
+
+header,
+aside,
+article,
+footer {
+    background: #eaeaea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25vh;
+}
+
+.item-grid {
+    height: auto;
+}
+
+
+
+
+.item-grid {
+    /* Grid Fallback */
+    display: flex;
+    flex-wrap: wrap;
+
+    /* Supports Grid */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+    grid-auto-rows: minmax(32px, auto);
+    grid-gap: 1em;
+}
+
+.item-module {
+    /* Demo-Specific Styles */
+    background: #eaeaea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    /* Flex Fallback */
+    margin-left: 5px;
+    margin-right: 5px;
+    flex: 1 1 200px;
+}
+
+/* If Grid is supported, remove the margin we set for the fallback */
+@supports (display: grid) {
+    .item-module {
+        margin: 0;
+    }
+}

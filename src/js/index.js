@@ -1,46 +1,23 @@
-import { elements } from './base';
-
-console.log('Fetching items');
+import Items from './models/Items';
 
 
 
-async function getDragon() {
-    const url = "http://ddragon.leagueoflegends.com/cdn/9.24.2/data/en_US/item.json";
-    const itemKeyList = new Array();
+const state = {};
+
+const controlItems = async () => {
+
+    state.items = new Items();
+
     try {
-        const res = await fetch(url);    
-        const myJson = await res.json();
-        const itemList = myJson.data;
-        for (var key in itemList) {
-            if (itemList.hasOwnProperty(key)) {
-                itemKeyList.push(key);
-            }
-        }
-    } catch (error) {
-        console.log(error);
+        await state.items.getDragon();
+        console.log(state.items.keyList);
+        
+        state.items.addAllImages();
+    } catch(error) {
+        alert(error);
     }
+};
 
-    return itemKeyList;
-}
+//['hashchange', 'load'].forEach(event => window.addEventListener(event, controlItems));
 
-function addImage(id) {
-    const url = `../../img/item/${id}.png`;
-    const markup = `
-        <li class="image__item">
-            <img src="${url}">
-        </li>
-    `;
-    elements.itemImages.insertAdjacentHTML('beforeend', markup);
-}
-
-const add1000Images = (array) => {
-    for (let i = 0; i < array.length; i ++) {
-        addImage(i);
-    }
-}
-
-const array = getDragon();
-console.log(array);
-add1000Images(array);
-
-
+window.addEventListener('load', controlItems);
