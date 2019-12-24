@@ -10,9 +10,11 @@ const controlItems = async () => {
 
     try {
         await state.items.getDragon();
-        console.log(state.items.keyList);
+        //console.log(state.items.keyList);
         
         state.items.addAllImages();
+
+        state.items.getGold();
     } catch(error) {
         alert(error);
     }

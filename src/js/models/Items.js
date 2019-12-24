@@ -1,41 +1,73 @@
 import { elements } from '../base';
 
 
+function sortByGold( a, b ) {
+    if ( a['gold']['base'] < b['gold']['base'] ){
+      return -1;
+    }
+    if ( a['gold']['base'] > b['gold']['base'] ){
+      return 1;
+    }
+    return 0;
+  }
+  
 
 export default class Items {
     constructor () {
         this.keyList = [];
+        this.itemData = [];
+        this.itemList = [];
     }
 
+    addItem(key, gold) {
+        const item = {
+            key,
+            gold
+        }
+        this.itemList.push(item);
+    }
 
     async getDragon() {
         const url = "http://ddragon.leagueoflegends.com/cdn/9.24.2/data/en_US/item.json";
         try {
             const res = await fetch(url);    
             const myJson = await res.json();
+            this.itemData = myJson.data;
             const itemList = myJson.data;
-            for (var key in itemList) {
-                if (itemList.hasOwnProperty(key)) {
-                    this.keyList.push(key);
-                }
+            const keys = Object.keys(itemList);
+            
+            for( let prop in itemList ){
+                let item = itemList[prop];
+                    if (item['gold']['purchasable']) {
+                        this.addItem(prop, item['gold']);
+                    }
             }
+            this.itemList.sort(sortByGold);
+            console.log(this.itemList)
         } catch (error) {
             console.log(error);
         }
     }
     
-    addImage(id) {
+    getGold() {
+        //this.itemData.Array.map( el => console.log(el.gold));
+    }
+
+    addImage(id, gold) {
         const url = `../../img/item/${id}.png`;
         const markup = `
             <div class="item-module">
-                <img src="${url}">
+                <div>
+                    <img src="${url}">
+                    <p>${gold}</p>
+                </div>
             </div>
         `;
         elements.itemImages.insertAdjacentHTML('beforeend', markup);
     }
     
     addAllImages() {
-        this.keyList.map( el => this.addImage(el));
+        this.itemList.forEach( el => this.addImage(el.key, el.gold.base));
     }
     
     /*const array = getDragon();

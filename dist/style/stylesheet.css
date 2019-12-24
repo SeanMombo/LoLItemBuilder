@@ -9,7 +9,7 @@ header, footer {
     grid-column: 1 / 4;
 }
 
-@media all and (max-width: 800px) {
+@media all and (max-width: 960px) {
     aside,
     article {
         grid-column: 1 / 4;
@@ -50,6 +50,7 @@ footer {
     grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
     grid-auto-rows: minmax(32px, auto);
     grid-gap: 1em;
+
 }
 
 .item-module {
