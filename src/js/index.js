@@ -10,7 +10,7 @@ const controlItems = async () => {
 
     try {
         await state.items.getDragon();
-        //console.log(state.items.keyList);
+        console.log(state.items.itemData);
         
         state.items.addAllImages();
 
