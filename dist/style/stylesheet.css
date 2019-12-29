@@ -1,4 +1,5 @@
 
+/*
 .grid {
     display: grid;
     grid-template-columns: 300px auto 300px;
@@ -9,15 +10,32 @@ header, footer {
     grid-column: 1 / 4;
 }
 
-@media all and (max-width: 960px) {
+@media only screen and (max-width: 960px) {
     aside,
     article {
-        grid-column: 1 / 4;
+        grid-column: 1 / 3;
     }
+
+    header{
+        order:-1;
+    }
+    .sidebar-left {
+        order:0;
+    }
+    .sidebar-right{
+        order:1;
+    }
+    .item-grid{
+        order:2;
+    }
+    footer{
+        order:6;
+    }
+
 }
 
 
-/* Demo Specific Styles */
+
 body {
     margin: 0 auto;
 }
@@ -37,44 +55,81 @@ footer {
     height: auto;
 }
 
-
-
-
 .item-grid {
-    /* Grid Fallback */
+    
     display: flex;
     flex-wrap: wrap;
 
-    /* Supports Grid */
+    
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
     grid-auto-rows: minmax(32px, auto);
     grid-gap: 1em;
-
+ 
 }
 
 .item-module {
-    /* Demo-Specific Styles */
+
     background: #eaeaea;
     display: flex;
     align-items: center;
     justify-content: center;
 
 
-    /* Flex Fallback */
+    
     margin-left: 5px;
     margin-right: 5px;
     flex: 1 1 200px;
 }
 
-/* If Grid is supported, remove the margin we set for the fallback */
+
 @supports (display: grid) {
     .item-module {
         margin: 0;
         position:relative;
+        overflow:visible;
     }
 }
+*/
 
+html, body {
+    margin:0px;
+    height:100%;
+}
+
+.grid {
+    display:flex;
+   
+}
+.sidebar-left {
+    flex:1;
+}
+.sidebar-right {
+    flex:1;
+}
+.item-grid {
+    flex:2;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+
+@media (max-width:960px) {
+    .grid {
+        flex-direction:column;
+    }
+    .sidebar-left {
+        order:1;
+    }
+    .sidebar-right {
+        order:2;
+    }
+    .item-grid {
+        order:3;
+    }
+
+}
 
 .item-module .item-description {
     visibility: hidden;
@@ -88,22 +143,23 @@ footer {
     z-index: 1;
     opacity: 0;
     transition: opacity 0.3s;
+    bottom:105%;
   }
   
-  .item-module .item-description::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-  }
-  
+/*
   .item-module:hover .item-description {
     visibility: visible;
     opacity: 1;
+    -webkit-transition-delay: 500ms; 
+    transition-delay: 500ms; 
   }
+*/
+
+.item-module .item-description.bottom {
+    bottom: auto;
+    top: 60%;
+  }
+
+
 
 

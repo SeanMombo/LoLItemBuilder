@@ -1,8 +1,13 @@
 import Items from './models/Items';
+import { elements } from './base';
+
+
 
 
 
 const state = {};
+
+
 
 const controlItems = async () => {
 
@@ -13,8 +18,16 @@ const controlItems = async () => {
         console.log(state.items.itemData);
         
         state.items.addAllImages();
-
         state.items.getGold();
+        state.items.addListeners();
+        
+        [...document.querySelectorAll('.item-img')].forEach(function(item) {
+            item.addEventListener('mouseover', el => {
+                state.items.openDescription(item);
+            });
+
+        });
+
     } catch(error) {
         alert(error);
     }

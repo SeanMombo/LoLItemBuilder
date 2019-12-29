@@ -1,4 +1,5 @@
 import { elements } from '../base';
+import $ from 'jquery';
 
 
 function sortByGold( a, b ) {
@@ -61,9 +62,9 @@ export default class Items {
         if (id == 3850) id = 3303;
         const url = `../../img/item/${id}.png`;
         const markup = `
-            <div class="item-module">
+            <div class="item-module" id="mydiv">
                 <div>
-                    <img src="${url}">
+                    <img class="item-img" src="${url}" id="mydivheader">
                     <p>${gold}</p>
                 </div>
                 <span class="item-description">
@@ -86,7 +87,52 @@ export default class Items {
         this.items.forEach( el => this.addImage(el.key, el.gold, el.name, el.description));
     }
     
-    /*const array = getDragon();
-    console.log(array);
-    add1000Images(array);*/
+    getOffset(t) {
+        return t.offset();
+    }
+
+    getHeight(t) {
+        return t.height();
+    }
+
+    openDescription(item) {
+            var item2 = item.parentNode.nextSibling.nextSibling;
+            var t = $(item);
+            var tooltip = $(item2);
+            var offset = this.getOffset(t);
+            var height = this.getHeight(tooltip);
+
+            window.mytimeout = setTimeout(function(){
+            item2.style.visibility = 'visible';
+            item2.style.opacity = 1;
+            tooltip.toggleClass('bottom', (offset.top - $(window).scrollTop()) - height < 0);
+
+            
+        }, 300);
+    }
+
+
+
+    addListeners() {
+
+        [...document.querySelectorAll('.item-img')].forEach(function(item) {
+            item.addEventListener('mouseout', function() {
+                clearTimeout(window.mytimeout);
+                let item2 = item.parentNode.nextSibling.nextSibling;
+                item2.style.visibility = 'hidden';
+                item2.style.opacity = 0;
+            });
+        });
+
+
+
+        /*
+        $('item-img').hover(function(){
+            window.mytimeout = setTimeout(function(){
+                $("item-img").closest.animate({"left": "125px"}, 1200);
+            }, 2000);
+        }, function(){
+            clearTimeout(window.mytimeout);    
+        });*/
+    }
 }
