@@ -8,14 +8,23 @@ html, body {
 
 #mainSection {
     display:flex;
-    margin:10px;
+    
+    overflow-y:hidden;
+    overflow-x:hidden;
     
 }
 #middle {
-    padding:10px;
+    
     display:flex;
     flex-wrap:wrap;
     justify-content: center;
+    align-content:flex-start;
+
+    
+    overflow-x: hidden;
+    max-height: 100vh;
+    overflow-y: scroll;
+    
 }
 
 Main{
@@ -26,10 +35,6 @@ Main{
 #sideL{
     flex:1;
     background-color:blue;
-
-    display:flex;
-    flex-wrap:wrap;
-    flex-direction:column;
 }
 #sideR{
     flex:2;
@@ -42,6 +47,9 @@ Main{
 #filterSection {
     display:flex;
     justify-content:space-evenly;
+    
+    flex-wrap:wrap;
+    flex-direction:column;
 }
 #header{
     display:flex;
@@ -62,8 +70,7 @@ Main{
     margin: 5px;
     position:relative;
     overflow:visible;
-    overflow-y:hidden;
-    overflow-x:hidden;
+    
 
 }
 
@@ -106,19 +113,6 @@ Main{
     top:auto;
     bottom:110%;
   }
-
-  P {
-      margin:0;
-  }
-  
-/*
-  .item-module:hover .item-description {
-    visibility: visible;
-    opacity: 1;
-    -webkit-transition-delay: 500ms; 
-    transition-delay: 500ms; 
-  }
-*/
 
 
 .item-module .item-description.bottom {

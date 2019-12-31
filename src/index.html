@@ -1,13 +1,14 @@
 <html>
     <head>
         <link rel="stylesheet" href="style/stylesheet.css">
+        <link rel="stylesheet" href="style/stylesheetDesign.css">
         <meta name="viewport" content="width=device-width,initial-scale=1"> 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
                 
           $( function() {
-              $( "#middle, #sideL, #sideR").sortable({
+              $( "#middle, #sideR").sortable({
               opacity: 0.7,
               helper: "clone",
               revert: "invalid",
@@ -31,38 +32,57 @@
 
         <aside id="sideL">
             <div id="filterSection">
+                <div id="laneFilters">
+                    <h2>STARTING ITEMS</h2>
+                    <input type="checkbox" name="hp" value="Jungle">Jungle<br> 
+                    <input type="checkbox" name="ar" value="Lane" >Lane<br>
+                </div>
+
+                <div id="toolFilters">
+                    <h2>TOOLS</h2>
+                    <input type="checkbox" name="hp" value="Consumable">Consumable<br> 
+                    <input type="checkbox" name="ar" value="Gold" >Gold Income<br>
+                    <input type="checkbox" name="ar" value="Vision" >Vision & Trinkets<br>
+                </div>
+
                 <div id="defFilters">
-                    <h2>Defense</h2>
-                    <input type="checkbox" name="hp" value="Health">Health<br>
-                    <input type="checkbox" name="mr" value="SpellBlock">Magic Resist<br>
-                    <input type="checkbox" name="hreg" value="HealthRegen" >Health Regen<br>
+                    <h2>DEFENSE</h2>
+                    <input type="checkbox" name="hp" value="Health">Health<br> 
                     <input type="checkbox" name="ar" value="Armor" >Armor<br>
+                    <input type="checkbox" name="hreg" value="HealthRegen" >Health Regen<br>
+                    <input type="checkbox" name="mr" value="SpellBlock">Magic Resist<br>
                 </div>
+
                 <div id="atkFilters">
-                    <h2>Attack</h2>
-                    <input type="checkbox" name="dmg" value="Damage">Damage<br>
-                    <input type="checkbox" name="crit" value="CriticalStrike">Critical Strike<br>
+                    <h2>ATTACK</h2>
                     <input type="checkbox" name="as" value="AttackSpeed" >Attack Speed<br>
+                    <input type="checkbox" name="crit" value="CriticalStrike">Critical Strike<br>
+                    <input type="checkbox" name="dmg" value="Damage">Damage<br>
                     <input type="checkbox" name="ls" value="LifeSteal" >Life Steal<br>
+                    <input type="checkbox" name="apen" value="ArmorPenetration" >Armor Penetration<br>
                 </div>
+
                 <div id="magicFilters">
-                    <h2>Magic</h2>
-                    <input type="checkbox" name="ap" value="SpellDamage">Ability Power<br>
+                    <h2>MAGIC</h2>
                     <input type="checkbox" name="cdr" value="CooldownReduction">Cooldown Reduction<br>
                     <input type="checkbox" name="mana" value="Mana" >Mana<br>
                     <input type="checkbox" name="mreg" value="ManaRegen" >Mana Regen<br>
+
+                    <input type="checkbox" name="ap" value="SpellDamage">Ability Power<br>
+                    <input type="checkbox" name="ap" value="MagicPenetration">Magic Penetration<br>
+                    
                 </div>
-                <div id="miscFilters">
-                    <h2>Misc</h2>
-                    <input type="checkbox" name="spd" value="Bike">Movement<br>
-                    <input type="checkbox" name="cons" value="Car">Consumables<br>
-    
-                </div>
-                <div id="mapFilters">
+                <!--<div id="mapFilters">
                     <h2>Map</h2>
                     <input type="checkbox" name="rift" value="Bike">Summoner's Rift<br>
                     <input type="checkbox" name="tree" value="Car">Twisted Treeline<br>
                     <input type="checkbox" name="abyss" value="Boat">Howling Abyss<br>
+                </div>-->
+
+                <div id="spedFilters">
+                    <h2>MOVEMENT</h2>
+                    <input type="checkbox" name="boots" value="Bike">Boots<br>
+                    <input type="checkbox" name="other" value="Car">Other Movement<br>
                 </div>
     
             </div>
@@ -70,7 +90,7 @@
                 <input type="text" id="searchbar">
         </aside>
 
-        <main id="middle" class='sharedDrag'>
+        <main id="middle" class='sharedDrag scrollbar'>
         </main>
 
         <aside id="sideR" class='sharedDrag'>
