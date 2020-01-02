@@ -42,8 +42,8 @@ export default class Items {
             for( let prop in itemList ){
                 let item = itemList[prop];
                 //filter out items so that only basic items you can buy on 5v5 appear. 
-                    if (item['gold']['purchasable'] && !item['requiredAlly'] && item['maps']['11'] ) {
-                        this.addItem(prop, item['gold']['base'], item['name'], item['description'], item['tags']);
+                    if (item['gold']['purchasable'] /*&& !item['requiredAlly']*/ && item['maps']['11'] ) {
+                        this.addItem(prop, item['gold']['total'], item['name'], item['description'], item['tags']);
                     }
             }
             this.items.sort(sortByGold);

@@ -6,20 +6,24 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
-                
+                /*
           $( function() {
-              $( "#middle, #sideR").sortable({
+              $( "#middle, #sideR, #itemTab").sortable({
               opacity: 0.7,
               helper: "clone",
               revert: "invalid",
               cursorAt: { top: 32, left: 32 },
-              connectWith: '.sharedDrag'
+              connectWith: '.sharedDrag',
+              scroll: false
               });
 
-              $( "#middle, #sideL, #sideR").disableSelection();
+              $( "#middle, #sideL, #sideR, #itemTab").disableSelection();
 
               
-          } );
+          } );*/
+
+
+         
         </script>
    
       </head>
@@ -27,49 +31,52 @@
 
       
     
+    <div id='topbar'>
 
+    </div>
     <div id="mainSection">
+        
 
         <aside id="sideL">
             <div id="filterSection">
                 <div id="laneFilters">
                     <h2>STARTING ITEMS</h2>
-                    <input type="checkbox" name="hp" value="Jungle">Jungle<br> 
-                    <input type="checkbox" name="ar" value="Lane" >Lane<br>
+                    <input type="checkbox" name="hp" value="Jungle">Jungle<br> <span class='checkmark'></span>
+                    <input type="checkbox" name="ar" value="Lane" >Lane<br><span class='checkmark'></span>
                 </div>
 
                 <div id="toolFilters">
                     <h2>TOOLS</h2>
-                    <input type="checkbox" name="hp" value="Consumable">Consumable<br> 
-                    <input type="checkbox" name="ar" value="Gold" >Gold Income<br>
-                    <input type="checkbox" name="ar" value="Vision" >Vision & Trinkets<br>
+                    <input type="checkbox" name="hp" value="Consumable">Consumable<br> <span class='checkmark'></span>
+                    <input type="checkbox" name="ar" value="Gold" >Gold Income<br><span class='checkmark'></span>
+                    <input type="checkbox" name="ar" value="Vision" >Vision & Trinkets<br><span class='checkmark'></span>
                 </div>
 
                 <div id="defFilters">
                     <h2>DEFENSE</h2>
-                    <input type="checkbox" name="hp" value="Health">Health<br> 
-                    <input type="checkbox" name="ar" value="Armor" >Armor<br>
-                    <input type="checkbox" name="hreg" value="HealthRegen" >Health Regen<br>
-                    <input type="checkbox" name="mr" value="SpellBlock">Magic Resist<br>
+                    <input type="checkbox" name="hp" value="Health">Health<br> <span class='checkmark'></span>
+                    <input type="checkbox" name="ar" value="Armor" >Armor<br><span class='checkmark'></span>
+                    <input type="checkbox" name="hreg" value="HealthRegen" >Health Regen<br><span class='checkmark'></span>
+                    <input type="checkbox" name="mr" value="SpellBlock">Magic Resist<br><span class='checkmark'></span>
                 </div>
 
                 <div id="atkFilters">
                     <h2>ATTACK</h2>
-                    <input type="checkbox" name="as" value="AttackSpeed" >Attack Speed<br>
-                    <input type="checkbox" name="crit" value="CriticalStrike">Critical Strike<br>
-                    <input type="checkbox" name="dmg" value="Damage">Damage<br>
-                    <input type="checkbox" name="ls" value="LifeSteal" >Life Steal<br>
-                    <input type="checkbox" name="apen" value="ArmorPenetration" >Armor Penetration<br>
+                    <input type="checkbox" name="as" value="AttackSpeed" >Attack Speed<br><span class='checkmark'></span>
+                    <input type="checkbox" name="crit" value="CriticalStrike">Critical Strike<br><span class='checkmark'></span>
+                    <input type="checkbox" name="dmg" value="Damage">Damage<br><span class='checkmark'></span>
+                    <input type="checkbox" name="ls" value="LifeSteal" >Life Steal<br><span class='checkmark'></span>
+                    <input type="checkbox" name="apen" value="ArmorPenetration" >Armor Penetration<br><span class='checkmark'></span>
                 </div>
 
                 <div id="magicFilters">
                     <h2>MAGIC</h2>
-                    <input type="checkbox" name="cdr" value="CooldownReduction">Cooldown Reduction<br>
-                    <input type="checkbox" name="mana" value="Mana" >Mana<br>
-                    <input type="checkbox" name="mreg" value="ManaRegen" >Mana Regen<br>
+                    <input type="checkbox" name="cdr" value="CooldownReduction">Cooldown Reduction<br><span class='checkmark'></span>
+                    <input type="checkbox" name="mana" value="Mana" >Mana<br><span class='checkmark'></span>
+                    <input type="checkbox" name="mreg" value="ManaRegen" >Mana Regen<br><span class='checkmark'></span>
 
-                    <input type="checkbox" name="ap" value="SpellDamage">Ability Power<br>
-                    <input type="checkbox" name="ap" value="MagicPenetration">Magic Penetration<br>
+                    <input type="checkbox" name="ap" value="SpellDamage">Ability Power<br><span class='checkmark'></span>
+                    <input type="checkbox" name="ap" value="MagicPenetration">Magic Penetration<br><span class='checkmark'></span>
                     
                 </div>
                 <!--<div id="mapFilters">
@@ -87,18 +94,35 @@
     
             </div>
     
-                <input type="text" id="searchbar">
+                
         </aside>
 
-        <main id="middle" class='sharedDrag scrollbar'>
-        </main>
+        
+        <div id='middleContainer'>
+            <div id="searchbardiv">
+                <input type="text" id="searchbar">
 
-        <aside id="sideR" class='sharedDrag'>
-            <div id="createTab"></div>
+                <select name="cars" >
+                    <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                    <option value="fiat">Fiat</option>
+                    <option value="audi">Audi</option>
+                </select>
 
+                
+            </div>
+            <main id="middle" class='sharedDrag scrollbar'>
+            
+                
+            </main>
+        </div>
+        <aside id="sideR" >
+            <div id="createTab" class='sharedDrag' onDrop='createItemTab(e)'> <p>Drag items here to create a new block</p></div>
+            <div id="itemTabDiv"></div>
         </aside>
     </div>
 
     <div id="hidden-items"></div>
+    <ul id="myTaskList" class="list-group" style="cursor: grab"> .... </ul>
     </body>
 </html>

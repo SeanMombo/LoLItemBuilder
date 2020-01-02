@@ -6,7 +6,7 @@ import $ from 'jquery';
 
 import * as itemsView from './views/itemsView';
 import * as searchView from './views/searchView';
-
+import Sortable from 'sortablejs';
 
 const state = {};
 
@@ -73,26 +73,19 @@ const controlSearch = () => {
                             el.classList.remove('showItem');
                             el.classList.add('hideItem');
                         }
-
-                        /*checkBoxes.forEach(el2 => {
-                            
-                            for(let i = 0; i < typeArray.length; i++) {
-                                if (el2.checked && el2.value == typeArray[i]) {
-                                    el.classList.remove('hideItem');
-                                    el.classList.add('showItem');
-                                } else if (!el2.checked && el2.value == typeArray[i]) {
-                 
-                                }
-                            }
-                        });*/
                     }) 
                 } else {
                     itemsToFilter.forEach(el => el.classList.remove('hideItem'));
                     itemsToFilter.forEach(el => el.classList.add('showItem'));
                 }
             })
-        }
+        }   
 
+        const allitems = document.querySelectorAll('.item-module');
+
+        Object.values(allitems).forEach(el => {
+            el.addEventListener('onDragStart', startDrag);
+        })
     } catch(error) {
         alert(error);
     }
@@ -114,3 +107,89 @@ $(function() {
     });
 
 }); 
+
+
+new Sortable(middle, {
+    group: {
+        name: 'shared',
+      //  pull: 'clone' // To clone: set pull to 'clone'
+    },
+    animation: 50,
+    forceFallback: true,
+    onChoose: function (evt) { $("#myTaskList").css('cursor', 'grabbing'); }, // Run when you click
+    onStart: function (evt) { $("#myTaskList").css('cursor', 'grabbing'); }, // Dragging started
+    onEnd: function (evt) { $("#myTaskList").css('cursor', 'grab'); }, // Dragging ended
+    filter: '.dontdrag',
+});
+
+
+
+
+
+new Sortable(createTab, {
+    group: {
+        name: 'shared',
+    //    pull: 'clone' // To clone: set pull to 'clone'
+    },
+    animation: 50,
+    forceFallback: true,
+    dragoverBubble: false,
+    removeCloneOnHide: true,
+    disabled:true,
+    onAdd: evt => {
+        const el = document.createElement('DIV');
+        el.classList.add('itemTab');
+        document.querySelector('#sideR').appendChild(el);
+        
+        makeSortableTab(el);
+        
+        const itemEl = evt.item;
+        el.appendChild(itemEl);
+    }
+});
+
+
+function startDrag(event) {
+    event.dataTransfer.setData("Text", event.target.id);
+};
+
+function createItemTab(event) {
+    event.preventDefault();
+    const el = document.createElement('DIV');
+    el.classList.add('itemTab');
+    document.querySelector('#sideR').appendChild(el);
+
+    var data = event.dataTransfer.getData("Text");
+    el.appendChild(document.getElementById(data));
+}
+
+
+function makeSortableTab(sort) {
+    
+    const s = new Sortable(sort, {
+        group: {
+            name: 'shared',
+        //    pull: 'clone' // To clone: set pull to 'clone'
+        },
+        animation: 50,
+        forceFallback: true,
+        onChoose: function (evt) { $("#myTaskList").css('cursor', 'grabbing'); }, // Run when you click
+        onStart: function (evt) { $("#myTaskList").css('cursor', 'grabbing'); }, // Dragging started
+        onEnd: function (evt) { $("#myTaskList").css('cursor', 'grab'); }, // Dragging ended
+        filter: '.dontdrag',
+    });
+
+    return s;
+}
+// // Element dragging ended
+// onEnd: function (evt) {
+//     var itemEl = evt.item;  // dragged HTMLElement
+//     evt.to;    // target list
+//     evt.from;  // previous list
+//     evt.oldIndex;  // element's old index within old parent
+//     evt.newIndex;  // element's new index within new parent
+//     evt.oldDraggableIndex; // element's old index within old parent, only counting draggable elements
+//     evt.newDraggableIndex; // element's new index within new parent, only counting draggable elements
+//     evt.clone // the clone element
+//     evt.pullMode;  // when item is in another sortable: `"clone"` if cloning, `true` if moving
+// },
