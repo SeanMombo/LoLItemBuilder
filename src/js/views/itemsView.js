@@ -4,7 +4,7 @@ export const addImage = (id, gold, title, description, tags, hidden) => {
     if (id == 3850) id = 3303;
     const url = `../../img/item/${id}.png`;
     const markup = `
-        <div class="item-module" data-tags='${tags}'>
+        <div class="item-module noSelect" data-tags='${tags}' id='${id}'>
             <div>
                 <img class="item-img" src="${url}">
                 <p>${gold}</p>

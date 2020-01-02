@@ -3,7 +3,7 @@ html, body {
     margin: 0px;
     position:relative;
     overflow-x: hidden;
-    
+    overflow-y:hidden;
     max-width: 100%; 
     height: auto;
     margin-bottom:40px;
@@ -40,7 +40,9 @@ html, body {
     align-content:flex-start;
 
     
-    max-height: 80vh;
+
+
+    height: calc(85vh - 90px);
     overflow-y: scroll;
     overflow-x: hidden;
     
@@ -108,12 +110,19 @@ Select{
 
  }
 .item-module {
-    margin-right: 28px;
+    margin-right: 8px;
     position:relative;
     overflow:visible;
- 
-
 }
+.noSelect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Opera and Firefox */
+  }
 
 @media (max-width: 800px) {
     #mainSection {
@@ -184,11 +193,20 @@ Select{
 
     display:flex;
     flex-direction:column;
+    
+
+
 
 }
+#sideRScroll {
+    height: 75vh; 
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
 
-
-#createTab {
+#createTabDiv {
+    
+    border: 3px solid rgba(255,255,255,.3);
     order:1;
     width: 87%;
 
@@ -197,16 +215,23 @@ Select{
     padding: 10px;
     padding-top:20px;
 
-    min-height: 100px;
-    
-    border: 3px solid rgba(255,255,255,.3);
+    height: 100px;
+
     display: inline-block;
     text-align:center;
-    flex: 0 0 auto;
 }
-#createTab P {
+.tabhover {
+   background-color: rgba(255,255,255,.3);
+}
+#createTabDiv P {
+    order:-1000;
     color: #e49b14;
     padding-top:35px;
+    position:sticky;
+}
+
+.invisibleGhost {
+    visibility: hidden;
 }
 
 #itemTabDiv {
@@ -234,6 +259,9 @@ Select{
     min-height: 100px;
     
     border: 3px solid rgba(255,255,255,.3);
+    /* display: inline-grid;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(5, auto); */
 }
 
 .itemTab .item-module {

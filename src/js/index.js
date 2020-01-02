@@ -84,7 +84,7 @@ const controlSearch = () => {
         const allitems = document.querySelectorAll('.item-module');
 
         Object.values(allitems).forEach(el => {
-            el.addEventListener('onDragStart', startDrag);
+            el.addEventListener('ondragstart', startDrag);
         })
     } catch(error) {
         alert(error);
@@ -119,41 +119,70 @@ new Sortable(middle, {
     onChoose: function (evt) { $("#myTaskList").css('cursor', 'grabbing'); }, // Run when you click
     onStart: function (evt) { $("#myTaskList").css('cursor', 'grabbing'); }, // Dragging started
     onEnd: function (evt) { $("#myTaskList").css('cursor', 'grab'); }, // Dragging ended
+
     filter: '.dontdrag',
 });
 
 
-
-
-
-new Sortable(createTab, {
+new Sortable(createTabDiv, {
     group: {
         name: 'shared',
     //    pull: 'clone' // To clone: set pull to 'clone'
     },
     animation: 50,
     forceFallback: true,
-    dragoverBubble: false,
     removeCloneOnHide: true,
-    disabled:true,
+    ghostClass: 'invisibleGhost',
+    sort: false,
+    filter: ".item-module, P",
+    
     onAdd: evt => {
         const el = document.createElement('DIV');
         el.classList.add('itemTab');
-        document.querySelector('#sideR').appendChild(el);
+        document.querySelector('#sideRScroll').appendChild(el);
         
         makeSortableTab(el);
         
         const itemEl = evt.item;
         el.appendChild(itemEl);
-    }
+    },
+
+});
+
+
+new Sortable(createtabp, {
+    group: {
+        name: 'shared',
+
+    },
+    animation: 50,
+    forceFallback: true,
+    removeCloneOnHide: true,
+    ghostClass: 'invisibleGhost',
+    sort: false,
+    
+    
+    onAdd: evt => {
+        const el = document.createElement('DIV');
+        el.classList.add('itemTab');
+        document.querySelector('#sideRScroll').appendChild(el);
+        
+        makeSortableTab(el);
+        
+        const itemEl = evt.item;
+        el.appendChild(itemEl);
+    },
+
 });
 
 
 function startDrag(event) {
     event.dataTransfer.setData("Text", event.target.id);
+    console.log('hi')
 };
 
 function createItemTab(event) {
+    console.log('test')
     event.preventDefault();
     const el = document.createElement('DIV');
     el.classList.add('itemTab');
@@ -164,6 +193,7 @@ function createItemTab(event) {
 }
 
 
+
 function makeSortableTab(sort) {
     
     const s = new Sortable(sort, {
@@ -171,11 +201,17 @@ function makeSortableTab(sort) {
             name: 'shared',
         //    pull: 'clone' // To clone: set pull to 'clone'
         },
+        
         animation: 50,
         forceFallback: true,
         onChoose: function (evt) { $("#myTaskList").css('cursor', 'grabbing'); }, // Run when you click
         onStart: function (evt) { $("#myTaskList").css('cursor', 'grabbing'); }, // Dragging started
-        onEnd: function (evt) { $("#myTaskList").css('cursor', 'grab'); }, // Dragging ended
+        onEnd: function (evt) { 
+            $("#myTaskList").css('cursor', 'grab'); 
+            const numKids = evt.from.childElementCount;
+
+            if (numKids == 0) evt.from.remove();
+        }, // Dragging ended
         filter: '.dontdrag',
     });
 

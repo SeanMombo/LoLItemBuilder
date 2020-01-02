@@ -10,19 +10,30 @@ h2 {
     margin-left:4px;
 }
 
-#middle::-webkit-scrollbar {
+#middle::-webkit-scrollbar, #sideRScroll::-webkit-scrollbar{
     width: 8px;
-    
 } 
 
-
-#middle::-webkit-scrollbar-thumb {
+#middle::-webkit-scrollbar-thumb, #sideRScroll::-webkit-scrollbar-thumb {
     /*background-color: #745e2d;*/
     background-color: #735d2c;
     border-radius:10px;
 }
 
-#middle::-webkit-scrollbar-track {
+#middle::-webkit-scrollbar-track, #sideRScroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    
+}
+
+#sideRScroll::-webkit-scrollbar{
+    width: 8px;
+} 
+#sideRScroll::-webkit-scrollbar-thumb {
+    /*background-color: #745e2d;*/
+    background-color: #735d2c;
+    border-radius:10px;
+}
+#sideRScroll::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     
 }

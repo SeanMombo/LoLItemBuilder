@@ -112,17 +112,21 @@
                 
             </div>
             <main id="middle" class='sharedDrag scrollbar'>
-            
-                
             </main>
+
         </div>
-        <aside id="sideR" >
-            <div id="createTab" class='sharedDrag' onDrop='createItemTab(e)'> <p>Drag items here to create a new block</p></div>
-            <div id="itemTabDiv"></div>
+        <aside id="sideR">
+            <div id='sideRScroll'>
+                <div id='createTabDiv' class='sharedDrag'>
+                    <p id='createtabp' class='disabled'>Drag items here to create a new block</p>
+                    <!-- <div id="createTab" class='sharedDrag' > </div> -->
+
+                </div>
+                
+            </div>
         </aside>
     </div>
 
     <div id="hidden-items"></div>
-    <ul id="myTaskList" class="list-group" style="cursor: grab"> .... </ul>
     </body>
 </html>
