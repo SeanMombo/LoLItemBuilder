@@ -3,11 +3,11 @@ P {
 }
 
 h2 {
-    margin: 5px;
-    font-size:16px;
+    font-family: 'Roboto Slab', serif; font-size:13px; font-weight:bold;
+    color:#c49936;
     margin:0px;
-    margin-top:5px;
-    margin-left:4px;
+    margin-bottom:2px;
+    margin-left:3px;
 }
 
 #middle::-webkit-scrollbar, #sideRScroll::-webkit-scrollbar{

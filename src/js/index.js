@@ -6,7 +6,8 @@ import $ from 'jquery';
 
 import * as itemsView from './views/itemsView';
 import * as searchView from './views/searchView';
-import Sortable from 'sortablejs';
+import Sortable from 'sortablejs/modular/sortable.complete.esm.js';
+
 
 const state = {};
 
@@ -41,51 +42,7 @@ const controlSearch = () => {
     state.search = new Search();
     
     try {
-
-        const itemsToFilter = document.querySelectorAll("#middle .item-module");
-        const checkBoxes = document.querySelectorAll("#filterSection input");
-        
-
-        for (var i = 0; i < checkBoxes.length; i++) {
-            checkBoxes[i].addEventListener("click", e => {
-
-                if (Object.values(checkBoxes).some(el => el.checked)) {
-                    // hide all items
-                    itemsToFilter.forEach(el => el.classList.add('hideItem'));
-                    
-                    // find all items with a matching tag to the checkboxes. 
-                    // Reveal them if one of their tags is checked
-                    itemsToFilter.forEach(el => {
-                        let itemType = $(el).data('tags');
-                        let typeArray = itemType.split(",");
-                        let checkedBoxes = Object.values(checkBoxes).filter(check => check.checked);
-                        
-                        let hasAllFilters;
-                        
-                        
-                        hasAllFilters = checkedBoxes.every(el2 => typeArray.find(el3 => el3 == el2.value));
-
-                        //console.log(hasAllFilters)
-                        if (hasAllFilters) {
-                            el.classList.remove('hideItem');
-                            el.classList.add('showItem');
-                        } else {
-                            el.classList.remove('showItem');
-                            el.classList.add('hideItem');
-                        }
-                    }) 
-                } else {
-                    itemsToFilter.forEach(el => el.classList.remove('hideItem'));
-                    itemsToFilter.forEach(el => el.classList.add('showItem'));
-                }
-            })
-        }   
-
-        const allitems = document.querySelectorAll('.item-module');
-
-        Object.values(allitems).forEach(el => {
-            el.addEventListener('ondragstart', startDrag);
-        })
+        state.search.getSearch();
     } catch(error) {
         alert(error);
     }
@@ -108,26 +65,65 @@ $(function() {
 
 }); 
 
+function findPrevious(elm) {
+    do {
+        elm = elm.previousSibling;
+    } while (elm && elm.nodeType != 1);
+    return elm;
+ }
+ function swapDiv(elm) {
+    var previous = findPrevious(elm);
+    if (previous) {
+        elm.parentNode.insertBefore(elm, previous);
+    }
+}
 
-new Sortable(middle, {
+const middleSortable = new Sortable(middle, {
     group: {
         name: 'shared',
-      //  pull: 'clone' // To clone: set pull to 'clone'
+        pull: 'clone',
+        put:false,
     },
-    animation: 50,
-    forceFallback: true,
+    animation: 0,
+    
+    forceFallback: true, 
+    filter: '.dontdrag',
+
+    scroll: true, // Enable the plugin. Can be HTMLElement.
+	
+	scrollSensitivity: 100, 
+	scrollSpeed: 10, 
+
+
     onChoose: function (evt) { $("#myTaskList").css('cursor', 'grabbing'); }, // Run when you click
-    onStart: function (evt) { $("#myTaskList").css('cursor', 'grabbing'); }, // Dragging started
+    onStart: function (evt) { 
+        $("#myTaskList").css('cursor', 'grabbing'); 
+    }, 
     onEnd: function (evt) { $("#myTaskList").css('cursor', 'grab'); }, // Dragging ended
 
-    filter: '.dontdrag',
+    onClone: function (evt) {
+        var item = evt.item;
+        var clone = evt.clone;
+        
+        item.classList.add('dontFilter');
+        
+      
+        let item2 = clone.children[0].children[0];
+        const desc = clone.children[1];
+        desc.style.visibility='hidden';
+        desc.style.opacity=0;
+        state.items.addCloneListener(item2);
+        state.search.addSingleSearch(clone);
+
+
+    },
+
 });
 
 
 new Sortable(createTabDiv, {
     group: {
         name: 'shared',
-    //    pull: 'clone' // To clone: set pull to 'clone'
     },
     animation: 50,
     forceFallback: true,
@@ -137,14 +133,7 @@ new Sortable(createTabDiv, {
     filter: ".item-module, P",
     
     onAdd: evt => {
-        const el = document.createElement('DIV');
-        el.classList.add('itemTab');
-        document.querySelector('#sideRScroll').appendChild(el);
-        
-        makeSortableTab(el);
-        
-        const itemEl = evt.item;
-        el.appendChild(itemEl);
+        makeSortable(evt);
     },
 
 });
@@ -163,49 +152,37 @@ new Sortable(createtabp, {
     
     
     onAdd: evt => {
-        const el = document.createElement('DIV');
-        el.classList.add('itemTab');
-        document.querySelector('#sideRScroll').appendChild(el);
-        
-        makeSortableTab(el);
-        
-        const itemEl = evt.item;
-        el.appendChild(itemEl);
+        makeSortable(evt);
     },
 
 });
 
-
-function startDrag(event) {
-    event.dataTransfer.setData("Text", event.target.id);
-    console.log('hi')
-};
-
-function createItemTab(event) {
-    console.log('test')
-    event.preventDefault();
+function makeSortable(evt) {
     const el = document.createElement('DIV');
     el.classList.add('itemTab');
-    document.querySelector('#sideR').appendChild(el);
-
-    var data = event.dataTransfer.getData("Text");
-    el.appendChild(document.getElementById(data));
+    document.querySelector('#sideRScroll').appendChild(el);
+    
+    makeSortableTab(el);
+    
+    const itemEl = evt.item;
+    el.appendChild(itemEl);
 }
-
-
 
 function makeSortableTab(sort) {
     
     const s = new Sortable(sort, {
+
         group: {
             name: 'shared',
         //    pull: 'clone' // To clone: set pull to 'clone'
         },
-        
+        removeOnSpill: true,
         animation: 50,
         forceFallback: true,
-        onChoose: function (evt) { $("#myTaskList").css('cursor', 'grabbing'); }, // Run when you click
-        onStart: function (evt) { $("#myTaskList").css('cursor', 'grabbing'); }, // Dragging started
+        onChoose: function (evt) { $("#myTaskList").css('cursor', 'grabbing'); },
+        onStart: function (evt) { 
+            $("#myTaskList").css('cursor', 'grabbing'); 
+        }, 
         onEnd: function (evt) { 
             $("#myTaskList").css('cursor', 'grab'); 
             const numKids = evt.from.childElementCount;
@@ -217,6 +194,8 @@ function makeSortableTab(sort) {
 
     return s;
 }
+
+
 // // Element dragging ended
 // onEnd: function (evt) {
 //     var itemEl = evt.item;  // dragged HTMLElement

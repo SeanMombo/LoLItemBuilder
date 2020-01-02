@@ -3,6 +3,7 @@ import { elements } from '../base';
 export const addImage = (id, gold, title, description, tags, hidden) => {
     if (id == 3850) id = 3303;
     const url = `../../img/item/${id}.png`;
+    if (gold == 0) gold = 'Free';
     const markup = `
         <div class="item-module noSelect" data-tags='${tags}' id='${id}'>
             <div>
@@ -59,10 +60,10 @@ export const openDescription = (item) => {
         window.mytimeout = setTimeout(function(){
         item2.style.visibility = 'visible';
         item2.style.opacity = 1;
+        item2.style.transform ='translateZ()';
         tooltip.toggleClass('bottom', (offset.top - $(window).scrollTop()) - height < 0);
         
        // tooltip.toggleClass('right', (offset.left) - width < 0);
 
-        
     }, 300);
 }

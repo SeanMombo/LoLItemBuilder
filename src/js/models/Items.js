@@ -1,6 +1,6 @@
 import { elements } from '../base';
 import $ from 'jquery';
-
+import * as itemsView from '../views/itemsView'
 
 function sortByGold( a, b ) {
     if ( a['gold'] < b['gold'] ){
@@ -53,6 +53,19 @@ export default class Items {
         }
     }
 
+    addCloneListener(item) {
+        
+        let item2 = item.parentNode.nextSibling.nextSibling;
+        item.addEventListener('mouseout', function() {
+            clearTimeout(window.mytimeout);
+            item2.style.visibility = 'hidden';
+            item2.style.opacity = 0;
+        });
+
+        item.addEventListener('mouseover', el => {
+            itemsView.openDescription(item);
+        });
+    }
     addListeners() {
         [...document.querySelectorAll('.item-img')].forEach(function(item) {
             item.addEventListener('mouseout', function() {
@@ -63,10 +76,9 @@ export default class Items {
                 
             });
 
-            item.addEventListener('click', function() {
-               item.parentNode.parentNode.classList.add('hideItem')
-                
-            });
+            // item.addEventListener('click', function() {
+            //    item.parentNode.parentNode.classList.add('hideItem')
+            // });
         });
 
 

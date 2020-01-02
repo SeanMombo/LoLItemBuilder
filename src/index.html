@@ -5,27 +5,9 @@
         <meta name="viewport" content="width=device-width,initial-scale=1"> 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script>
-                /*
-          $( function() {
-              $( "#middle, #sideR, #itemTab").sortable({
-              opacity: 0.7,
-              helper: "clone",
-              revert: "invalid",
-              cursorAt: { top: 32, left: 32 },
-              connectWith: '.sharedDrag',
-              scroll: false
-              });
 
-              $( "#middle, #sideL, #sideR, #itemTab").disableSelection();
-
-              
-          } );*/
-
-
-         
-        </script>
-   
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,700&amp;subset=cyrillic' rel='stylesheet'>
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
       </head>
     <body>
 
@@ -44,7 +26,7 @@
                     <input type="checkbox" name="hp" value="Jungle">Jungle<br> <span class='checkmark'></span>
                     <input type="checkbox" name="ar" value="Lane" >Lane<br><span class='checkmark'></span>
                 </div>
-
+                
                 <div id="toolFilters">
                     <h2>TOOLS</h2>
                     <input type="checkbox" name="hp" value="Consumable">Consumable<br> <span class='checkmark'></span>
@@ -116,12 +98,12 @@
 
         </div>
         <aside id="sideR">
-            <div id='sideRScroll'>
-                <div id='createTabDiv' class='sharedDrag'>
-                    <p id='createtabp' class='disabled'>Drag items here to create a new block</p>
-                    <!-- <div id="createTab" class='sharedDrag' > </div> -->
+            <div id='createTabDiv' class='sharedDrag'>
+                <p id='createtabp' class='disabled'>Drag items here to create a new block</p>
+                <!-- <div id="createTab" class='sharedDrag' > </div> -->
 
-                </div>
+            </div>
+            <div id='sideRScroll'>
                 
             </div>
         </aside>
