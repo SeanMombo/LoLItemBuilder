@@ -34,7 +34,7 @@ export default class Items {
     }
 
     async getDragon() {
-        const url = "http://ddragon.leagueoflegends.com/cdn/9.24.2/data/en_US/item.json";
+        const url = "https://ddragon.leagueoflegends.com/cdn/9.24.2/data/en_US/item.json";
         try {
             const res = await fetch(url);    
             const myJson = await res.json();
