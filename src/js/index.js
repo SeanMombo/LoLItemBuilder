@@ -23,12 +23,6 @@ $(function() {
 const state = {};
 
 
-const initPage = () => {
-    controlItems();
-    addListeners();
-}
-
-
 const controlItems = async () => {
 
     state.items = new Items();
@@ -39,15 +33,28 @@ const controlItems = async () => {
         
         itemsView.addAllImages(state.items.getItems());
         state.items.addListeners();
-            
         // Open item description on mouseover
         [...document.querySelectorAll('.item-img')].forEach(function(item) {
             item.addEventListener('mouseover', el => {
                 itemsView.openDescription(item);
             });
-
         });
         
+        // const itemsToFilter = document.querySelectorAll("#middle .item-module");
+        // // hide description box on click
+        // for (var i = 0; i < itemsToFilter.length; i++) {
+        //     itemsToFilter[i].addEventListener("click", e => {
+        //         let item = e.target;
+                
+        //         let item2 = item.parentNode.nextSibling.nextSibling;
+                
+        //         clearTimeout(window.mytimeout);
+        //         item2.style.visibility = 'hidden';
+        //         item2.style.opacity = 0;
+        //     });
+        // }
+
+
     } catch(error) {
         alert(error);
     }
@@ -62,19 +69,20 @@ const controlSearch = (query) => {
     
     try {
         searchView.runFilters(itemsToFilter, checkBoxes, query);
+
     } catch(error) {
         alert(error);
     }
 };
 
-window.addEventListener('load', initPage);
+
 
 //// ADD EVENT LISTENERS
 const addListeners = () => {
-
-    
     const searchTerm = $('input[id="searchbar"]').val();
     const checkBoxes = document.querySelectorAll("#filterSection input");
+    const itemsToFilter = document.querySelectorAll("#middle .item-module");
+
     // clear filters button
     document.querySelector('#clearFilters').addEventListener('click', searchView.clearFilters, false);
 
@@ -84,7 +92,6 @@ const addListeners = () => {
         controlSearch(searchTerm);
     });
 
-    
     // Checkboxes 
     for (var i = 0; i < checkBoxes.length; i++) {
         checkBoxes[i].addEventListener("click", e => {
@@ -94,6 +101,12 @@ const addListeners = () => {
 
 }
 
+const initPage = () => {
+    controlItems();
+    addListeners();
+}
+
+window.addEventListener('load', initPage);
 
 //// MIDDLE SORTABLE 
 
@@ -106,22 +119,36 @@ const middleSortable = new Sortable(middle, {
     animation: 0,
     forceFallback: true, 
     filter: '.dontdrag',
-    scroll: true, // Enable the plugin. Can be HTMLElement.
-	scrollSensitivity: 100, 
-	scrollSpeed: 10, 
+    
     onChoose: function (evt) { $("#myTaskList").css('cursor', 'grabbing'); },
     onStart: function (evt) { 
         $("#myTaskList").css('cursor', 'grabbing'); 
+
     }, 
     onEnd: function (evt) { 
         $("#myTaskList").css('cursor', 'grab'); 
         $("#createTabDiv").removeClass('itemhover');
+        $(".itemTab").removeClass('itemhover');
+
+        //remove description once we move to the item set lists
+        if (evt.to !== evt.from)
+            evt.item.children[1].remove();
     }, 
 
     // change createtab style while hovering an element over it
     onMove: function (evt) {
         $("#createTabDiv").removeClass('itemhover');
         $(evt.to).closest("#createTabDiv").addClass('itemhover');
+
+        $(".itemTab").removeClass('itemhover');
+        $(evt.to).closest(".itemTab").addClass('itemhover');
+
+        //prevent decription from appearing while dragging
+        var item = evt.dragged;
+    
+        let desc = item.children[1];
+        desc.style.visibility='hidden';
+        desc.style.opacity=0;
       },
 
     onClone: function (evt) {
@@ -129,15 +156,20 @@ const middleSortable = new Sortable(middle, {
         var clone = evt.clone;
         
         item.classList.add('dontFilter');
-        
-      
         let item2 = clone.children[0].children[0];
-        const desc = clone.children[1];
-        desc.style.visibility='hidden';
-        desc.style.opacity=0;
 
         itemsView.addCloneListener(item2);
         searchView.addSingleSearch(clone);
+
+        //// hide description
+        let desc = clone.children[1];
+        desc.style.visibility='hidden';
+        desc.style.opacity=0;
+
+        desc = item.children[1];
+
+        desc.style.visibility='hidden';
+        desc.style.opacity=0;
     },
 });
 

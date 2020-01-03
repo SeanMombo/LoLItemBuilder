@@ -100,8 +100,6 @@ export const addSingleSearch = (item) => {
                     let checkedBoxes = Object.values(checkBoxes).filter(check => check.checked);
                     
                     let hasAllFilters;
-                    
-                    
                     hasAllFilters = checkedBoxes.every(el2 => typeArray.find(el3 => el3 == el2.value));
 
                     //console.log(hasAllFilters)

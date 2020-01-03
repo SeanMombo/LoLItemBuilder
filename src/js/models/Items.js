@@ -60,8 +60,11 @@ export default class Items {
             item.addEventListener('mouseout', function() {
                 clearTimeout(window.mytimeout);
                 let item2 = item.parentNode.nextSibling.nextSibling;
-                item2.style.visibility = 'hidden';
-                item2.style.opacity = 0;
+                if (!item.parentNode.parentNode.classList.contains('dontFilter')) 
+                {
+                    item2.style.visibility = 'hidden';
+                    item2.style.opacity = 0;
+                }
             });
         });
     }

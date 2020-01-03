@@ -1,5 +1,7 @@
 import { elements } from '../base';
 import * as itemsView from '../views/itemsView';
+
+
 export const addImage = (id, gold, title, description, tags, hidden) => {
     if (id == 3850) id = 3303;
     const url = `../../img/item/${id}.png`;
@@ -17,7 +19,6 @@ export const addImage = (id, gold, title, description, tags, hidden) => {
                         <div class="gold">${gold}</div>
                     </div>
                     <div class="desc">${description}</div>
-
             <span>
         </div>
     `;
@@ -64,15 +65,18 @@ export const getWidth = (t) => {
 }
 
 export const openDescription = (item) => {
+    if (!item.parentNode.parentNode.classList.contains('dontFilter')) 
+    {
         var item2 = item.parentNode.nextSibling.nextSibling;
         var t = $(item);
         var tooltip = $(item2);
         var offset = getOffset(t);
         var height = getHeight(tooltip);
         window.mytimeout = setTimeout(function(){
-        item2.style.visibility = 'visible';
-        item2.style.opacity = 1;
-        item2.style.transform ='translateZ()';
-        tooltip.toggleClass('bottom', (offset.top - $(window).scrollTop()) - height < 0);
-    }, 300);
+            item2.style.visibility = 'visible';
+            item2.style.opacity = 1;
+            
+            tooltip.toggleClass('bottom', (offset.top - $(window).scrollTop()) - height < 0);
+        }, 300);
+    }
 }

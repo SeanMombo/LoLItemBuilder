@@ -28,7 +28,7 @@ html, body {
 
 #middleContainer {
     
-    flex:1;
+    flex:1.3;
     margin-bottom:64px;
 
     display:flex;
@@ -102,41 +102,6 @@ html, body {
     justify-content:center;
     align-content:center;
 }
-#searchbar {
-    position:relative;
-    height:36px;
-    
-    flex:2;
-    margin-left:-16px;
-
-    padding-left:32px;
-    background-color:black;
-    color:#735d2c;
-    border-width: 4px;
-    border-color: #735d2c;
-    border-style: ridge;
-    
-}
-Select{
-    flex:1;
-    margin-left:10px;
-    margin-right:-16px;
-    height:36px;
-
-    background-color:black;
-    color:#735d2c;
-    border-width: 4px;
-    border-color: #735d2c;
-    border-style: ridge;
-}
-#searchbardiv {
-    width:100%;
-    height:40px;
-    margin:16px;
-    display:flex;
-    
-
- }
 
 .noSelect {
     -webkit-touch-callout: none; /* iOS Safari */
@@ -217,21 +182,69 @@ left:140%;
 
 
 #sideR{
-    flex:2;
+    
     /* background-color:blue; */
     margin-top:10px;
 
     display:flex;
     flex-direction:column;
-    
+    flex:1.5;
 }
-#sideRScroll {
+#sideRScroll { 
+    
     max-height: calc(75vh - 90px); 
     overflow-y: scroll;
     overflow-x: hidden;
 }
+.searchbarWrapper{
+    position: relative;
+    flex:2;
+    display:flex;
+}
+
+.searchbarWrapper img {
+    position: absolute;
+    top: 7px;
+    left: -10px;
+
+}
+#searchbar {
+    position:relative;
+    height:36px;
+    flex:2;
+    
+    margin-left:-16px;
+
+    padding-left:28px;
+    background-color:black;
+    color:#735d2c;
+    border-width: 4px;
+    border-color: #735d2c;
+    border-style: ridge;
+    
+}
+Select{
+    flex:1;
+    margin-left:10px;
+    margin-right:-16px;
+    height:36px;
+
+    background-color:black;
+    color:#735d2c;
+    border-width: 4px;
+    border-color: #735d2c;
+    border-style: ridge;
+}
+#searchbardiv {
+    width:100%;
+    height:40px;
+    margin:16px;
+    display:flex;
+ }
+
 
 #createTabDiv {
+    
     order:100; 
     border: 3px solid rgba(255,255,255,.3);
     width: 90%;
@@ -298,6 +311,18 @@ left:140%;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 @media (max-width: 800px) {
     html,body{
         overflow-y:scroll;
@@ -333,3 +358,5 @@ left:140%;
         order:3;
     }
 }
+
+
