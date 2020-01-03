@@ -13,15 +13,16 @@ export const clearResults = () => {
 
 export const runFilters = (itemsToFilter, checkBoxes, query) => {
         
-    itemsToFilter = Object.values(itemsToFilter).filter(fil => !fil.classList.contains('dontFilter'));
+    itemsToFilter = [...itemsToFilter].filter(fil => !fil.classList.contains('dontFilter'));
     // Filter using the checkboxes first
-    if (Object.values(checkBoxes).some(el => el.checked)) {
+    if (Object.values(checkBoxes).some(c1 => c1.checked)) {
         // hide all items
         itemsToFilter.forEach(el => el.classList.add('hideItem'));
         
         // find all items with a matching tag to the checkboxes. 
         // Reveal them if one of their tags is checked
         itemsToFilter.forEach(el => {
+            
             let itemType = $(el).data('tags');
             let typeArray = itemType.split(",");
             let checkedBoxes = Object.values(checkBoxes).filter(check => check.checked);
@@ -82,16 +83,22 @@ export const clearFilters = () => {
 
 export const addSingleSearch = (item) => {
 
-    const itemsToFilter = [item];
+    let itemsToFilter = [item];
     const checkBoxes = document.querySelectorAll("#filterSection input");
 
+    
+    itemsToFilter = itemsToFilter.filter(fil => !fil.classList.contains('dontFilter'));
+
+    itemsToFilter = itemsToFilter.filter(fil => fil.parentNode);
+
+    
     for (var i = 0; i < checkBoxes.length; i++) {
         checkBoxes[i].addEventListener("click", e => {
 
             if (Object.values(checkBoxes).some(el => el.checked)) {
                 // hide all items
                 itemsToFilter.forEach(el => el.classList.add('hideItem'));
-                
+
                 // find all items with a matching tag to the checkboxes. 
                 // Reveal them if one of their tags is checked
                 itemsToFilter.forEach(el => {

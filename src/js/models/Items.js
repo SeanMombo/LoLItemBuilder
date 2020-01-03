@@ -17,6 +17,7 @@ export default class Items {
         this.keyList = [];
         this.itemData = [];
         this.items = [];
+        this.domList = [];
     }
 
     addItem(key, gold, name, description, tags, hidden = false) {

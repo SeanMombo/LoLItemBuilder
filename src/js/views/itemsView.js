@@ -6,8 +6,13 @@ export const addImage = (id, gold, title, description, tags, hidden) => {
     if (id == 3850) id = 3303;
     const url = `../../img/item/${id}.png`;
     if (gold == 0) gold = 'Free';
+
+    if(!tags) tags = '';
+
+    title = title.replace(/[']/g,"");
+
     const markup = `
-        <div class="item-module noSelect" data-tags='${tags}' data-name='${title}id='${id}'>
+        <div class='item-module noSelect' data-tags='${tags}' data-name='${title}' id='${id}'>
             <div>
                 <img class="item-img" src="${url}">
                 <p>${gold}</p>

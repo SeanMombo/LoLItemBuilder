@@ -23,56 +23,67 @@
             <div id="filterSection">
                 <button id='clearFilters'>Clear Filters</button>
                 <div id="laneFilters">
-                    <h2>STARTING ITEMS</h2>
-                    <input type="checkbox" name="hp" value="Jungle">Jungle<br> <span class='checkmark'></span>
-                    <input type="checkbox" name="ar" value="Lane" >Lane<br><span class='checkmark'></span>
+                    <h2>STARTING ITEMS</h2> 
+                    <label class="checkboxContainer"><input type="checkbox" name="hp" value="Jungle"><div>Jungle</div> <span class='checkmark'></span></label> 
+                    <label class="checkboxContainer"><input type="checkbox" name="ar" value="Lane" ><div>Lane</div><span class='checkmark'></span></label> 
                 </div>
                 
                 <div id="toolFilters">
                     <h2>TOOLS</h2>
-                    <input type="checkbox" name="hp" value="Consumable">Consumable<br> <span class='checkmark'></span>
-                    <input type="checkbox" name="ar" value="Gold" >Gold Income<br><span class='checkmark'></span>
-                    <input type="checkbox" name="ar" value="Vision" >Vision & Trinkets<br><span class='checkmark'></span>
+                    <label class="checkboxContainer"><input type="checkbox" name="hp" value="Consumable"><div>Consumable</div> <span class='checkmark'></span></label> 
+                    <label class="checkboxContainer"><input type="checkbox" name="ar" value="Gold" ><div>Gold Income</div> <span class='checkmark'></span></label> 
+                    <label class="checkboxContainer"><input type="checkbox" name="ar" value="Vision" ><div>Vision & Trinkets</div><span class='checkmark'></span></label> 
                 </div>
 
                 <div id="defFilters">
                     <h2>DEFENSE</h2>
-                    <input type="checkbox" name="hp" value="Health">Health<br> <span class='checkmark'></span>
-                    <input type="checkbox" name="ar" value="Armor" >Armor<br><span class='checkmark'></span>
-                    <input type="checkbox" name="hreg" value="HealthRegen" >Health Regen<br><span class='checkmark'></span>
-                    <input type="checkbox" name="mr" value="SpellBlock">Magic Resist<br><span class='checkmark'></span>
+                    <label class="checkboxContainer"><input type="checkbox" name="hp" value="Health"><div>Health</div> <span class='checkmark'></span></label> 
+                    <label class="checkboxContainer"><input type="checkbox" name="ar" value="Armor" ><div>Armor</div><span class='checkmark'></span></label> 
+                    <label class="checkboxContainer"><input type="checkbox" name="hreg" value="HealthRegen" ><div>Health Regen</div>
+                    <span class='checkmark'></span></label> 
+                    <label class="checkboxContainer"><input type="checkbox" name="mr" value="SpellBlock"><div>Magic Resist</div>
+                    <span class='checkmark'></span></label> 
                 </div>
 
                 <div id="atkFilters">
                     <h2>ATTACK</h2>
-                    <input type="checkbox" name="as" value="AttackSpeed" >Attack Speed<br><span class='checkmark'></span>
-                    <input type="checkbox" name="crit" value="CriticalStrike">Critical Strike<br><span class='checkmark'></span>
-                    <input type="checkbox" name="dmg" value="Damage">Damage<br><span class='checkmark'></span>
-                    <input type="checkbox" name="ls" value="LifeSteal" >Life Steal<br><span class='checkmark'></span>
-                    <input type="checkbox" name="apen" value="ArmorPenetration" >Armor Penetration<br><span class='checkmark'></span>
+                    <label class="checkboxContainer"><input type="checkbox" name="as" value="AttackSpeed" ><div>Attack Speed</div>
+                    <span class='checkmark'></span></label> 
+                    <label class="checkboxContainer"><input type="checkbox" name="crit" value="CriticalStrike"><div>Critical Strike</div>
+                    <span class='checkmark'></span></label> 
+                    <label class="checkboxContainer"><input type="checkbox" name="dmg" value="Damage"><div>Damage</div><span class='checkmark'></span></label> 
+                    <label class="checkboxContainer"><input type="checkbox" name="ls" value="LifeSteal" ><div>Life Steal</div> 
+                    <span class='checkmark'></span></label> 
+                    <label class="checkboxContainer"><input type="checkbox" name="apen" value="ArmorPenetration" ><div>Armor Penetration</div> 
+                    <span class='checkmark'></span></label> 
                 </div>
 
                 <div id="magicFilters">
                     <h2>MAGIC</h2>
-                    <input type="checkbox" name="cdr" value="CooldownReduction">Cooldown Reduction<br><span class='checkmark'></span>
-                    <input type="checkbox" name="mana" value="Mana" >Mana<br><span class='checkmark'></span>
-                    <input type="checkbox" name="mreg" value="ManaRegen" >Mana Regen<br><span class='checkmark'></span>
-
-                    <input type="checkbox" name="ap" value="SpellDamage">Ability Power<br><span class='checkmark'></span>
-                    <input type="checkbox" name="ap" value="MagicPenetration">Magic Penetration<br><span class='checkmark'></span>
+                    <label class="checkboxContainer"><input type="checkbox" name="cdr" value="CooldownReduction"><div>Cooldown Reduction</div>
+                    <span class='checkmark'></span></label> 
+                    <label class="checkboxContainer"><input type="checkbox" name="mana" value="Mana" ><div>Mana</div><span class='checkmark'></span></label> 
+                    <label class="checkboxContainer"><input type="checkbox" name="mreg" value="ManaRegen" ><div>Mana Regen</div> 
+                    <span class='checkmark'></span></label> 
+                    <label class="checkboxContainer"><input type="checkbox" name="ap" value="SpellDamage"><div>Ability Power</div>
+                    <span class='checkmark'></span></label> 
+                    <label class="checkboxContainer"><input type="checkbox" name="ap" value="MagicPenetration"><div>Magic Penetration</div> 
+                    <span class='checkmark'></span></label> 
                     
                 </div>
                 <!--<div id="mapFilters">
                     <h2>Map</h2>
-                    <input type="checkbox" name="rift" value="Bike">Summoner's Rift<br>
-                    <input type="checkbox" name="tree" value="Car">Twisted Treeline<br>
-                    <input type="checkbox" name="abyss" value="Boat">Howling Abyss<br>
+                    <input type="checkbox" name="rift" value="Bike">Summoner's Rift
+                    <input type="checkbox" name="tree" value="Car">Twisted Treeline
+                    <input type="checkbox" name="abyss" value="Boat">Howling Abyss
                 </div>-->
 
                 <div id="spedFilters">
                     <h2>MOVEMENT</h2>
-                    <input type="checkbox" name="boots" value="Bike">Boots<br>
-                    <input type="checkbox" name="other" value="Car">Other Movement<br>
+                    <label class="checkboxContainer"><input type="checkbox" name="ap" value="MagicPenetration"><div>Boots</div> 
+                        <span class='checkmark'></span></label> 
+                        <label class="checkboxContainer"><input type="checkbox" name="ap" value="MagicPenetration"><div>Other Movement</div> 
+                            <span class='checkmark'></span></label> 
                 </div>
     
             </div>

@@ -33,6 +33,7 @@ const controlItems = async () => {
         
         itemsView.addAllImages(state.items.getItems());
         state.items.addListeners();
+
         // Open item description on mouseover
         [...document.querySelectorAll('.item-img')].forEach(function(item) {
             item.addEventListener('mouseover', el => {
@@ -62,13 +63,13 @@ const controlItems = async () => {
 
 
 const controlSearch = (query) => {
-    const itemsToFilter = document.querySelectorAll("#middle .item-module");
+    const items = document.querySelectorAll("#middle .item-module");
     const checkBoxes = document.querySelectorAll("#filterSection input");
 
     state.search = new Search(query);
     
     try {
-        searchView.runFilters(itemsToFilter, checkBoxes, query);
+        searchView.runFilters(items, checkBoxes, query);
 
     } catch(error) {
         alert(error);
@@ -119,7 +120,7 @@ const middleSortable = new Sortable(middle, {
     animation: 0,
     forceFallback: true, 
     filter: '.dontdrag',
-    
+    sort: false,
     onChoose: function (evt) { $("#myTaskList").css('cursor', 'grabbing'); },
     onStart: function (evt) { 
         $("#myTaskList").css('cursor', 'grabbing'); 
