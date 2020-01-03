@@ -2,6 +2,7 @@
 export const elements = {
     itemImages: document.querySelector('#middle'),
     itemImg: document.querySelector('.item-img'),
+    searchInput: document.querySelector('#searchbar'),
 }
 
 export const boxes = {

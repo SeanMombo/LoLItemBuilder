@@ -5,7 +5,7 @@ export const addImage = (id, gold, title, description, tags, hidden) => {
     const url = `../../img/item/${id}.png`;
     if (gold == 0) gold = 'Free';
     const markup = `
-        <div class="item-module noSelect" data-tags='${tags}' id='${id}'>
+        <div class="item-module noSelect" data-tags='${tags}' data-name='${title}id='${id}'>
             <div>
                 <img class="item-img" src="${url}">
                 <p>${gold}</p>
@@ -23,6 +23,8 @@ export const addImage = (id, gold, title, description, tags, hidden) => {
     `;
     elements.itemImages.insertAdjacentHTML('beforeend', markup);
 }
+
+
 
 export const addAllImages = (items) => {
     items.forEach( el => addImage(el.key, el.gold, el.name, el.description, el.tags, false));
@@ -55,15 +57,10 @@ export const openDescription = (item) => {
         var tooltip = $(item2);
         var offset = getOffset(t);
         var height = getHeight(tooltip);
-       // var width  = getWidth(tooltip);
-
         window.mytimeout = setTimeout(function(){
         item2.style.visibility = 'visible';
         item2.style.opacity = 1;
         item2.style.transform ='translateZ()';
         tooltip.toggleClass('bottom', (offset.top - $(window).scrollTop()) - height < 0);
-        
-       // tooltip.toggleClass('right', (offset.left) - width < 0);
-
     }, 300);
 }

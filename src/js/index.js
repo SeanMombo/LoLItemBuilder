@@ -8,9 +8,25 @@ import * as itemsView from './views/itemsView';
 import * as searchView from './views/searchView';
 import Sortable from 'sortablejs/modular/sortable.complete.esm.js';
 
+/*
+$(function() {
+
+    var $body = $(document);
+    $body.bind('scroll', function() {
+        // "Disable" the horizontal scroll.
+        if ($body.scrollLeft() !== 0) {
+            $body.scrollLeft(0);
+        }
+    });
+}); */
 
 const state = {};
 
+
+const initPage = () => {
+    controlItems();
+    addListeners();
+}
 
 
 const controlItems = async () => {
@@ -30,53 +46,53 @@ const controlItems = async () => {
             });
 
         });
-        controlSearch();
-
     } catch(error) {
         alert(error);
     }
 };
 
 
-const controlSearch = () => {
-    state.search = new Search();
+const controlSearch = (query) => {
+    const itemsToFilter = document.querySelectorAll("#middle .item-module");
+    const checkBoxes = document.querySelectorAll("#filterSection input");
+
+    state.search = new Search(query);
     
     try {
-        state.search.getSearch();
+        searchView.runFilters(itemsToFilter, checkBoxes, query);
     } catch(error) {
         alert(error);
     }
 };
 
+window.addEventListener('load', initPage);
 
-//['hashchange', 'load'].forEach(event => window.addEventListener(event, controlItems));
+//// ADD EVENT LISTENERS
+const addListeners = () => {
 
-window.addEventListener('load', controlItems);
+    // clear filters button
+    document.querySelector('#clearFilters').addEventListener('click', searchView.clearFilters);
 
-$(function() {
-
-    var $body = $(document);
-    $body.bind('scroll', function() {
-        // "Disable" the horizontal scroll.
-        if ($body.scrollLeft() !== 0) {
-            $body.scrollLeft(0);
-        }
+    // search bar 
+    $('input[id="searchbar"]').keyup(function () {
+        const searchTerm = $(this).val();
+        controlSearch(searchTerm);
     });
 
-}); 
+    // Checkboxes 
+    const checkBoxes = document.querySelectorAll("#filterSection input");
+    const searchTerm = $('input[id="searchbar"]').val();
+    
 
-function findPrevious(elm) {
-    do {
-        elm = elm.previousSibling;
-    } while (elm && elm.nodeType != 1);
-    return elm;
- }
- function swapDiv(elm) {
-    var previous = findPrevious(elm);
-    if (previous) {
-        elm.parentNode.insertBefore(elm, previous);
+    for (var i = 0; i < checkBoxes.length; i++) {
+        checkBoxes[i].addEventListener("click", e => {
+            controlSearch(searchTerm);
+        });
     }
 }
+
+
+
 
 const middleSortable = new Sortable(middle, {
     group: {
@@ -195,16 +211,3 @@ function makeSortableTab(sort) {
     return s;
 }
 
-
-// // Element dragging ended
-// onEnd: function (evt) {
-//     var itemEl = evt.item;  // dragged HTMLElement
-//     evt.to;    // target list
-//     evt.from;  // previous list
-//     evt.oldIndex;  // element's old index within old parent
-//     evt.newIndex;  // element's new index within new parent
-//     evt.oldDraggableIndex; // element's old index within old parent, only counting draggable elements
-//     evt.newDraggableIndex; // element's new index within new parent, only counting draggable elements
-//     evt.clone // the clone element
-//     evt.pullMode;  // when item is in another sortable: `"clone"` if cloning, `true` if moving
-// },

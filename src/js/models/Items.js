@@ -26,7 +26,8 @@ export default class Items {
             name,
             description,
             tags,
-            hidden
+            hidden,
+
         }
         this.items.push(item);
     }
@@ -75,23 +76,7 @@ export default class Items {
                 item2.style.opacity = 0;
                 
             });
-
-            // item.addEventListener('click', function() {
-            //    item.parentNode.parentNode.classList.add('hideItem')
-            // });
         });
-
-
-      
-
-        /*
-        $('item-img').hover(function(){
-            window.mytimeout = setTimeout(function(){
-                $("item-img").closest.animate({"left": "125px"}, 1200);
-            }, 2000);
-        }, function(){
-            clearTimeout(window.mytimeout);    
-        });*/
     }
 
     getItems() {
