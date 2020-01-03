@@ -34,6 +34,7 @@ html, body {
     display:flex;
     flex-wrap:wrap;
     align-content:flex-start;
+    
 }
 
 #middle {
@@ -116,8 +117,6 @@ html, body {
     border-style: ridge;
     
 }
-
-
 Select{
     flex:1;
     margin-left:10px;
@@ -149,36 +148,6 @@ Select{
                                     supported by Chrome, Opera and Firefox */
   }
 
-@media (max-width: 800px) {
-    html,body{
-        overflow-y:scroll;
-        overflow-x:hidden;
-    }
-    #middle {
-        overflow:visible;
-        height:100%;
-    }
-    #mainSection {
-        flex-direction: column;
-    }
-
-    #sideL {
-        order:1;
-    }
-    #filterSection {
-        display:flex;
-        justify-content:space-evenly;
-        
-        flex-wrap:wrap;
-        flex-direction:row;
-    }
-    #sideR {
-        order:2;
-    }
-    #middleContainer {
-        order:3;
-    }
-}
 
 .hide {
     visibility: hidden;
@@ -257,17 +226,15 @@ left:140%;
     
 }
 #sideRScroll {
-    height: calc(75vh - 90px); 
+    max-height: calc(75vh - 90px); 
     overflow-y: scroll;
     overflow-x: hidden;
 }
 
 #createTabDiv {
-    
+    order:100; 
     border: 3px solid rgba(255,255,255,.3);
-    
     width: 90%;
-
     margin-left:20px;
     margin-top:6px;
     padding: 10px;
@@ -277,6 +244,9 @@ left:140%;
 
     display: inline-block;
     text-align:center;
+}
+.itemhover {
+    background-color: rgba(255,255,255,.1);
 }
 .tabhover {
    background-color: rgba(255,255,255,.3);
@@ -301,12 +271,12 @@ left:140%;
 }
 
 .itemTab {
-    order:2;
+    order:1;
     display:flex;
     flex-wrap:wrap;
     flex-direction:row;
     justify-content:flex-start;
-    
+    align-content:flex-start;
     width: 90%;
 
     margin-left:20px;
@@ -323,4 +293,43 @@ left:140%;
 
 .itemTab .item-module {
     margin:15px;
+    margin-bottom:4px;
+}
+
+
+
+@media (max-width: 800px) {
+    html,body{
+        overflow-y:scroll;
+        overflow-x:hidden;
+    }
+    #middle {
+        overflow:visible;
+        height:100%;
+    }
+    #mainSection {
+        flex-direction: column;
+    }
+
+    #sideL {
+        order:1;
+    }
+    #filterSection {
+        display:flex;
+        justify-content:space-evenly;
+        
+        flex-wrap:wrap;
+        flex-direction:row;
+    }
+    #sideR {
+        order:2;
+    }
+    #sideRScroll {
+        height: 100%;
+        overflow: visible;
+
+    }
+    #middleContainer {
+        order:3;
+    }
 }

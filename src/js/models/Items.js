@@ -54,19 +54,7 @@ export default class Items {
         }
     }
 
-    addCloneListener(item) {
-        
-        let item2 = item.parentNode.nextSibling.nextSibling;
-        item.addEventListener('mouseout', function() {
-            clearTimeout(window.mytimeout);
-            item2.style.visibility = 'hidden';
-            item2.style.opacity = 0;
-        });
-
-        item.addEventListener('mouseover', el => {
-            itemsView.openDescription(item);
-        });
-    }
+    
     addListeners() {
         [...document.querySelectorAll('.item-img')].forEach(function(item) {
             item.addEventListener('mouseout', function() {
@@ -74,7 +62,6 @@ export default class Items {
                 let item2 = item.parentNode.nextSibling.nextSibling;
                 item2.style.visibility = 'hidden';
                 item2.style.opacity = 0;
-                
             });
         });
     }

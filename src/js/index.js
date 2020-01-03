@@ -39,13 +39,15 @@ const controlItems = async () => {
         
         itemsView.addAllImages(state.items.getItems());
         state.items.addListeners();
-        
+            
+        // Open item description on mouseover
         [...document.querySelectorAll('.item-img')].forEach(function(item) {
             item.addEventListener('mouseover', el => {
                 itemsView.openDescription(item);
             });
 
         });
+        
     } catch(error) {
         alert(error);
     }
@@ -70,8 +72,11 @@ window.addEventListener('load', initPage);
 //// ADD EVENT LISTENERS
 const addListeners = () => {
 
+    
+    const searchTerm = $('input[id="searchbar"]').val();
+    const checkBoxes = document.querySelectorAll("#filterSection input");
     // clear filters button
-    document.querySelector('#clearFilters').addEventListener('click', searchView.clearFilters);
+    document.querySelector('#clearFilters').addEventListener('click', searchView.clearFilters, false);
 
     // search bar 
     $('input[id="searchbar"]').keyup(function () {
@@ -79,20 +84,18 @@ const addListeners = () => {
         controlSearch(searchTerm);
     });
 
-    // Checkboxes 
-    const checkBoxes = document.querySelectorAll("#filterSection input");
-    const searchTerm = $('input[id="searchbar"]').val();
     
-
+    // Checkboxes 
     for (var i = 0; i < checkBoxes.length; i++) {
         checkBoxes[i].addEventListener("click", e => {
             controlSearch(searchTerm);
         });
     }
+
 }
 
 
-
+//// MIDDLE SORTABLE 
 
 const middleSortable = new Sortable(middle, {
     group: {
@@ -101,21 +104,25 @@ const middleSortable = new Sortable(middle, {
         put:false,
     },
     animation: 0,
-    
     forceFallback: true, 
     filter: '.dontdrag',
-
     scroll: true, // Enable the plugin. Can be HTMLElement.
-	
 	scrollSensitivity: 100, 
 	scrollSpeed: 10, 
-
-
-    onChoose: function (evt) { $("#myTaskList").css('cursor', 'grabbing'); }, // Run when you click
+    onChoose: function (evt) { $("#myTaskList").css('cursor', 'grabbing'); },
     onStart: function (evt) { 
         $("#myTaskList").css('cursor', 'grabbing'); 
     }, 
-    onEnd: function (evt) { $("#myTaskList").css('cursor', 'grab'); }, // Dragging ended
+    onEnd: function (evt) { 
+        $("#myTaskList").css('cursor', 'grab'); 
+        $("#createTabDiv").removeClass('itemhover');
+    }, 
+
+    // change createtab style while hovering an element over it
+    onMove: function (evt) {
+        $("#createTabDiv").removeClass('itemhover');
+        $(evt.to).closest("#createTabDiv").addClass('itemhover');
+      },
 
     onClone: function (evt) {
         var item = evt.item;
@@ -128,12 +135,10 @@ const middleSortable = new Sortable(middle, {
         const desc = clone.children[1];
         desc.style.visibility='hidden';
         desc.style.opacity=0;
-        state.items.addCloneListener(item2);
-        state.search.addSingleSearch(clone);
 
-
+        itemsView.addCloneListener(item2);
+        searchView.addSingleSearch(clone);
     },
-
 });
 
 
@@ -198,13 +203,29 @@ function makeSortableTab(sort) {
         onChoose: function (evt) { $("#myTaskList").css('cursor', 'grabbing'); },
         onStart: function (evt) { 
             $("#myTaskList").css('cursor', 'grabbing'); 
+
+            $(".itemTab").removeClass('itemhover');
+            $(evt.to).closest(".itemTab").addClass('itemhover');
         }, 
         onEnd: function (evt) { 
             $("#myTaskList").css('cursor', 'grab'); 
             const numKids = evt.from.childElementCount;
 
             if (numKids == 0) evt.from.remove();
-        }, // Dragging ended
+
+            // remove hovering elements
+            $(".itemTab").removeClass('itemhover');
+            $("#createTabDiv").removeClass('itemhover');
+        }, 
+
+        // change createtab style while hovering an element over it
+        onMove: function (evt) {
+            $(".itemTab").removeClass('itemhover');
+            $(evt.to).closest(".itemTab").addClass('itemhover');
+            
+            $("#createTabDiv").removeClass('itemhover');
+            $(evt.to).closest("#createTabDiv").addClass('itemhover');
+        },
         filter: '.dontdrag',
     });
 

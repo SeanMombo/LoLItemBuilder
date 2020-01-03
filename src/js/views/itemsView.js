@@ -1,5 +1,5 @@
 import { elements } from '../base';
-
+import * as itemsView from '../views/itemsView';
 export const addImage = (id, gold, title, description, tags, hidden) => {
     if (id == 3850) id = 3303;
     const url = `../../img/item/${id}.png`;
@@ -38,7 +38,19 @@ export const hideAllImages = (items) => {
     });
 }
 
+export const addCloneListener = (item) => {
+        
+    let item2 = item.parentNode.nextSibling.nextSibling;
+    item.addEventListener('mouseout', function() {
+        clearTimeout(window.mytimeout);
+        item2.style.visibility = 'hidden';
+        item2.style.opacity = 0;
+    });
 
+    item.addEventListener('mouseover', el => {
+        itemsView.openDescription(item);
+    });
+}
 
 export const getOffset = (t) => {
     return t.offset();
