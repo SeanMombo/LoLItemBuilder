@@ -80,6 +80,12 @@ export const clearFilters = () => {
     }
 }
 
+export const resortItems = (sortBy, sortable) => {
+    //'Gold ▲' 'Gold ▼'
+    
+    var order = middleSortable.toArray();
+    middleSortable.sort(order.reverse()); // apply
+}
 
 export const addSingleSearch = (item) => {
 

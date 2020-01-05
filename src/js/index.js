@@ -100,6 +100,30 @@ const addListeners = () => {
         });
     }
 
+    // Dropdown menu filters
+    document.querySelector('.custom-select-wrapper').addEventListener('click', function() {
+        this.querySelector('.custom-select').classList.toggle('open');
+    })
+
+    for (const option of document.querySelectorAll(".custom-option")) {
+        option.addEventListener('click', function() {
+            if (!this.classList.contains('selected')) {
+                this.parentNode.querySelector('.custom-option.selected').classList.remove('selected');
+                this.classList.add('selected');
+                this.closest('.custom-select').querySelector('.custom-select__trigger span').textContent = this.textContent;
+
+                const item = state.items.sortBy(this.textContent);
+                itemsView.sortAllImages(state.items.items);
+            }
+        })
+    }
+    window.addEventListener('click', function(e) {
+        const select = document.querySelector('.custom-select')
+        if (!select.contains(e.target)) {
+            select.classList.remove('open');
+        }
+    });
+
 }
 
 const initPage = () => {
@@ -156,7 +180,8 @@ const middleSortable = new Sortable(middle, {
         var item = evt.item;
         var clone = evt.clone;
         
-        item.classList.add('dontFilter');
+        if (evt.to !== evt.from)
+            item.classList.add('dontFilter');
         let item2 = clone.children[0].children[0];
 
         itemsView.addCloneListener(item2);
@@ -264,4 +289,5 @@ function makeSortableTab(sort) {
 
     return s;
 }
+
 

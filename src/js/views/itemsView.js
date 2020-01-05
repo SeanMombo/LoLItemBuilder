@@ -4,13 +4,13 @@ import * as itemsView from '../views/itemsView';
 
 export const addImage = (id, gold, title, description, tags, hidden) => {
     if (id == 3850) id = 3303;
-    const url = `../../img/item/${id}.png`;
+    const url = `img/item/${id}.png`;
     if (gold == 0) gold = 'Free';
 
     if(!tags) tags = '';
 
     title = title.replace(/[']/g,"");
-
+    if (title == 'Spellthiefs Edge') id = 3850;
     const markup = `
         <div class='item-module noSelect' data-tags='${tags}' data-name='${title}' id='${id}'>
             <div>
@@ -18,19 +18,22 @@ export const addImage = (id, gold, title, description, tags, hidden) => {
                 <p>${gold}</p>
             </div>
             <span class="item-description">
-                    <img src="${url}">
+                <div class="topSection">
+
+                    <div class="image"><img src="${url}"></div>
+            
                     <div class="info">
-                        <div class="name">${title}</div>
-                        <div class="gold">${gold}</div>
+                        <div class="descname">${title}</div>
+                        <div class="descgold"><img src='img/coin.png'><p>${gold}</p></div>
                     </div>
-                    <div class="desc">${description}</div>
+                </div>
+                <br>
+                <div class="desc">${description}</div>
             <span>
         </div>
     `;
     elements.itemImages.insertAdjacentHTML('beforeend', markup);
 }
-
-
 
 export const addAllImages = (items) => {
     items.forEach( el => addImage(el.key, el.gold, el.name, el.description, el.tags, false));
@@ -41,6 +44,14 @@ export const hideAllImages = (items) => {
 
     modules.forEach( el => {
         par.appendChild(el);        
+    });
+}
+
+export const sortAllImages = (items) => {
+    const m = document.querySelector('#middle');
+    items.forEach( el => {
+        const mod = document.getElementById(el.key);
+        m.appendChild(mod)
     });
 }
 
@@ -70,18 +81,39 @@ export const getWidth = (t) => {
 }
 
 export const openDescription = (item) => {
-    if (!item.parentNode.parentNode.classList.contains('dontFilter')) 
+    if (/*!item.parentNode.parentNode.classList.contains('dontFilter')*/1) 
     {
+        
+            
         var item2 = item.parentNode.nextSibling.nextSibling;
         var t = $(item);
         var tooltip = $(item2);
+        
+
         var offset = getOffset(t);
+
         var height = getHeight(tooltip);
+        const ypos = offset.top - $(window).scrollTop() - height - 24 - 28;
+        const xpos = offset.left - tooltip.width()/2 + 25 + 28;
+
         window.mytimeout = setTimeout(function(){
             item2.style.visibility = 'visible';
             item2.style.opacity = 1;
+            // tooltip.toggleClass('bottom', (ypos < 0));
+            tooltip.css({'top': ypos, 'left': xpos});
+
+            if(ypos < 0) {
+                tooltip.css("top", ypos + height + 64 + 24);
+            }
             
-            tooltip.toggleClass('bottom', (offset.top - $(window).scrollTop()) - height < 0);
+            let m = $('#middle');
+            let mright = m.offset().left + m.width() - 16;
+            let moff = (xpos + tooltip.width())
+
+            if(moff > mright) {
+                tooltip.css("left", xpos + (mright-moff));
+            }
+            var t2 = $('.item-description:after')
         }, 300);
     }
 }

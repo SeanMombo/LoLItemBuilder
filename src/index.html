@@ -13,12 +13,9 @@
 
     <div id='descClonediv'></div>
     
-    <div id='topbar'> 
+    <div id='topbar'> </div>
 
-    </div>
     <div id="mainSection">
-        
-
         <aside id="sideL">
             <div id="filterSection">
                 <button id='clearFilters'>Clear Filters</button>
@@ -97,19 +94,26 @@
                 <div class='searchbarWrapper'>
                     <input type="text" id="searchbar">
                     <img 
-                    src="/img/search.svg" 
-                    alt="searchbutton"
-                    height="20"
-                    width="20" />
+                        src="/img/search.svg" 
+                        alt="searchbutton"
+                        height="20"
+                        width="20" 
+                    />
                 </div>
-                
-                <select name="cars" >
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="fiat">Fiat</option>
-                    <option value="audi">Audi</option>
-                </select>
+                <div class="custom-select-wrapper">
+                    <div class="custom-select">
+                        <div class="custom-select__trigger"><span>Gold ▲</span>
+                            <div class="arrow"></div>
+                        </div>
+                        <div class="custom-options">
+                            <span class="custom-option selected" data-value="goldasc"><p>Gold ▲</p> </span>
+                            <span class="custom-option" data-value="golddesc"><p>Gold ▼</p></span>
+                            <span class="custom-option" data-value="nameasc"><p>Name ▲</p></span>
+                            <span class="custom-option" data-value="namedesc"><p>Name ▼</p></span>
+                        </div>
 
+                    </div>
+                </div>
                 
             </div>
 

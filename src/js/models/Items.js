@@ -2,16 +2,6 @@ import { elements } from '../base';
 import $ from 'jquery';
 import * as itemsView from '../views/itemsView'
 
-function sortByGold( a, b ) {
-    if ( a['gold'] < b['gold'] ){
-      return -1;
-    }
-    if ( a['gold'] > b['gold'] ){
-      return 1;
-    }
-    return 0;
-  }
-  
 export default class Items {
     constructor () {
         this.keyList = [];
@@ -33,6 +23,14 @@ export default class Items {
         this.items.push(item);
     }
 
+    sortBy(type) {
+        type = type.replace(/\s/g, '');
+        if (type == 'Gold▲') {this.items.sort(sortByGoldAsc);}; 
+        if (type == 'Gold▼') this.items.sort(sortByGoldDesc); 
+        if (type == 'Name▲') this.items.sort(sortByNameAsc); 
+        if (type == 'Name▼') this.items.sort(sortByNameDesc); 
+    }
+
     async getDragon() {
         const url = "https://ddragon.leagueoflegends.com/cdn/9.24.2/data/en_US/item.json";
         try {
@@ -48,7 +46,7 @@ export default class Items {
                         this.addItem(prop, item['gold']['total'], item['name'], item['description'], item['tags']);
                     }
             }
-            this.items.sort(sortByGold);
+            this.items.sort(sortByGoldAsc);
 
         } catch (error) {
             console.log(error);
@@ -69,8 +67,47 @@ export default class Items {
             });
         });
     }
-
     getItems() {
         return this.items;
     }
+}
+
+function sortByGoldAsc( a, b ) {
+    if ( a['gold'] < b['gold'] ){
+        return -1;
+    }
+    if ( a['gold'] > b['gold'] ){
+        return 1;
+    }
+    return 0;
+}
+
+function sortByGoldDesc( a, b ) {
+    if ( a['gold'] > b['gold'] ){
+        return -1;
+    }
+    if ( a['gold'] < b['gold'] ){
+        return 1;
+    }
+    return 0;
+}
+
+function sortByNameAsc( a, b ) {
+    if ( a['name'] < b['name'] ){
+        return -1;
+    }
+    if ( a['name'] > b['name'] ){
+        return 1;
+    }
+    return 0;
+}
+
+function sortByNameDesc( a, b ) {
+    if ( a['name'] > b['name'] ){
+        return -1;
+    }
+    if ( a['name'] < b['name'] ){
+        return 1;
+    }
+    return 0;
 }

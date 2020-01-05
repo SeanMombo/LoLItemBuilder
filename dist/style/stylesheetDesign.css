@@ -10,19 +10,18 @@ h2 {
     margin-top:5;
 }
 
-#middle::-webkit-scrollbar, #sideRScroll::-webkit-scrollbar{
+#middle::-webkit-scrollbar{
     width: 8px;
 } 
 
-#middle::-webkit-scrollbar-thumb, #sideRScroll::-webkit-scrollbar-thumb {
+#middle::-webkit-scrollbar-thumb{
     /*background-color: #745e2d;*/
     background-color: #735d2c;
     border-radius:10px;
 }
 
-#middle::-webkit-scrollbar-track, #sideRScroll::-webkit-scrollbar-track {
+#middle::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    
 }
 
 #sideRScroll::-webkit-scrollbar{
@@ -135,4 +134,226 @@ h2 {
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+
+
+.custom-select-wrapper {
+    position: relative;
+    user-select: none;
+    
+    width:100px;
+    margin-left:16px;
+    
+}
+.custom-select {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    z-index:1;
+    padding-top:3px;
+    height:29px;
+    background-color:black;
+    
+    border-width: 2px;
+    border-color: #735d2c;
+    border-style: ridge;
+}
+.custom-select__trigger {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    
+    color:rgba(223, 210, 185, 0.863);
+    height: 60px;
+    line-height: 60px;
+    
+    cursor: pointer;
+
+    height:27px;
+}
+
+.custom-options {
+    position: absolute;
+    display: block;
+    top: 100%;
+    left: 0;
+    right: 0;
+    color:rgba(255,255,255,0.7);
+    background: black;
+    transition: all 0.1s;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    
+    margin-top:4px;
+    margin-left:-4px;
+    margin-right:-4px;
+    
+    border-width: 2px;
+    border-color: #735d2c;
+    border-style: ridge;
+    
+}
+.custom-select.open .custom-options {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+.custom-option {
+    position: relative;
+    display: block;
+    padding-left:12px;
+    
+    color: rgba(223, 210, 185, 0.863);
+    
+    cursor: pointer;
+    transition: all 0.5s;
+    height:27px;
+
+}
+
+.custom-option p{
+    padding-top:5px;
+}
+
+.custom-option:hover {
+    cursor: pointer;
+    background-color: #b2b2b22f;
+    color: #e7e3d4;
+    
+}
+
+.custom-option.selected {
+    color: #f1c445de;
+     background-color: #363d33; 
+}
+
+
+
+
+.arrow {
+    position: relative;
+    height: 9px;
+    width: 2px;
+}
+ .arrow::before, .arrow::after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    width: 0.1rem;
+    height: 100%;
+    transition: all 0.1s;
+}
+.arrow::before {
+    left: -3px;
+    transform: rotate(45deg);
+    background-color: #e7e3d4;
+}
+.arrow::after {
+    left: 3px;
+    transform: rotate(-45deg);
+    background-color: #e7e3d4;
+}
+
+.arrow-u {
+    width: 0; 
+    height: 0; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+
+    border-bottom: 12px solid rgba(223, 210, 185, 0.863);
+
+    margin-top:3px;
+    margin-left:5px;
+    position:absolute;
+}
+
+.arrow-d {
+    width: 0; 
+    height: 0; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    
+    border-top: 12px solid rgba(223, 210, 185, 0.863);
+
+    margin-top:3px;
+    margin-left:5px;
+    position:absolute;
+}
+
+.desc {
+    text-align:left;
+}
+
+.topSection {
+    display:flex;
+}
+
+.topSection img{
+    flex:1;
+    border: 1px solid grey;
+}
+
+.topSection .info{
+    margin:10px;
+    flex:9;
+    justify-content: flex-start;
+    text-align:left;
+
+    width:44px;
+    height:44px;
+}
+
+.descname {
+    font-family: 'Roboto Slab', serif; font-size:16px; font-weight:bold;
+    margin-top:-8px;
+}
+
+.descgold {
+    margin-top:2px;
+}
+
+.descgold img{
+    float: left;
+    width:20px;
+    height:18px;
+    margin-top:5px;
+    border: 0px;
+}
+
+.descgold p{
+    align-self:flex-start;
+    text-align:left;
+    float: left;
+    font-family: 'Roboto'; font-size:14px;
+    color: white;
+}
+
+.desc {
+    font-size:15px;
+    pointer-events: none;
+    cursor: default;
+    padding:4px;
+}
+.desc hr {
+    border-width: 1px 0px 0px 0px;
+}
+.item-description stats {
+    color: rgb(0, 171, 196);
+}
+
+.item-description active, passive, unique{
+    color: #f1c445de;
+}
+
+.item-description font a {
+    text-decoration: none;
+    color: #9999ff;
+}
+
+.item-description a {
+    text-decoration: none;
+    color:white;
 }
