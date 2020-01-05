@@ -236,13 +236,21 @@ new Sortable(createtabp, {
 
 });
 
+// I need to use the set and setview classes to properly do MVC for the item set component.
+// having full control over the id's and shit will make it much easier to create and exporter.
 function makeSortable(evt) {
     const el = document.createElement('DIV');
     el.classList.add('itemTab');
     document.querySelector('#sideRScroll').appendChild(el);
-    
+
+    const el2 = document.createElement('DIV');
+    el2.classList.add('itemTabBar');
+
+
+    el.appendChild(el2);
+
+
     makeSortableTab(el);
-    
     const itemEl = evt.item;
     el.appendChild(itemEl);
 }

@@ -62,20 +62,26 @@ body {
     width:90%;
     margin-bottom:20px;
     height:36px;
-    
-    background-color:black;
-    color:rgba(255,255,255,0.7);
-    border-width: 2px;
+    font-size:18px;
+    background-color:rgba(0, 0, 0, 1);
+    color:#d1b371;
+    border:0;
+     border-width: 2px;
     border-color: #735d2c;
-    border-style: ridge;
+    border-style: ridge; 
+    cursor: pointer;
 }
-
+#clearFilters:hover {
+    color:#ebe5d7;
+    font-weight:medium;
+}
 #clearFilters:focus {
     outline:0;
 }
 
 #filterSection {
     font-size: 14px; 
+    
     display:flex;
     justify-content:center;
     
@@ -264,7 +270,7 @@ Select{
 #createTabDiv {
     
     order:100; 
-    border: 3px solid rgba(255,255,255,.3);
+    border: 2px solid rgba(255,255,255,.21);
     width: 90%;
     margin-left:20px;
     margin-top:6px;
@@ -313,10 +319,10 @@ Select{
     margin-left:20px;
     margin-top:6px;
     
-
+    padding-top:25px;
     min-height: 100px;
     
-    border: 3px solid rgba(255,255,255,.3);
+    border: 2px solid rgba(255,255,255,.21);
     /* display: inline-grid;
     grid-auto-flow: row;
     grid-template-columns: repeat(5, auto); */
@@ -327,12 +333,14 @@ Select{
     margin-bottom:4px;
 }
 
-
-
-
-
-
-
+.itemTabBar {
+    height:25px;
+    width:100%;
+    background-color: rgba(255,255,255,.21);
+    margin-top:-23px;
+    margin-left:2px;
+    margin-right:2px;
+}
 
 @media (max-width: 800px) {
     html,body{

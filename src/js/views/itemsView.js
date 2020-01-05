@@ -82,14 +82,11 @@ export const getWidth = (t) => {
 
 export const openDescription = (item) => {
     if (/*!item.parentNode.parentNode.classList.contains('dontFilter')*/1) 
-    {
-        
-            
+    { 
         var item2 = item.parentNode.nextSibling.nextSibling;
         var t = $(item);
         var tooltip = $(item2);
-        
-
+    
         var offset = getOffset(t);
 
         var height = getHeight(tooltip);
