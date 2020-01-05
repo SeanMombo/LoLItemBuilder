@@ -59,7 +59,7 @@ export default class Items {
             item.addEventListener('mouseout', function() {
                 clearTimeout(window.mytimeout);
                 let item2 = item.parentNode.nextSibling.nextSibling;
-                if (!item.parentNode.parentNode.classList.contains('dontFilter')) 
+                //if (item.parentNode.parentNode.parentNode.id === 'middle')
                 {
                     item2.style.visibility = 'hidden';
                     item2.style.opacity = 0;

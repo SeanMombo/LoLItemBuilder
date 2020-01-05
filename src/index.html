@@ -13,7 +13,28 @@
 
     <div id='descClonediv'></div>
     
-    <div id='topbar'> </div>
+    <div id='topbar'>
+        <div id='topBar1'> 
+            <div class='setTitle'>
+                <img 
+                    src="/img/edit.svg" 
+                    alt="edit set title button"/>
+                <p class='setTitleText'>New Item Set Title</p>
+                <button id='exportSet'>Export Set</button>
+            </div>
+            
+        </div> 
+    
+<!-- 
+        
+
+        <div id='topBar3'>
+
+        </div>
+
+         -->
+        
+    </div>
 
     <div id="mainSection">
         <aside id="sideL">
@@ -77,15 +98,14 @@
 
                 <div id="spedFilters">
                     <h2>MOVEMENT</h2>
-                    <label class="checkboxContainer"><input type="checkbox" name="ap" value="MagicPenetration"><div>Boots</div> 
+                    <label class="checkboxContainer"><input type="checkbox" name="ap" value="Boots"><div>Boots</div> 
                         <span class='checkmark'></span></label> 
-                        <label class="checkboxContainer"><input type="checkbox" name="ap" value="MagicPenetration"><div>Other Movement</div> 
+                        <label class="checkboxContainer"><input type="checkbox" name="ap" value='NonbootsMovement'><div>Other Movement</div> 
                             <span class='checkmark'></span></label> 
                 </div>
     
             </div>
-    
-                
+
         </aside>
 
         
@@ -122,6 +142,9 @@
 
         </div>
         <aside id="sideR">
+            <div id='optionBar'>
+               
+            </div>
             <div id='createTabDiv' class='sharedDrag'>
                 <p id='createtabp' class='disabled'>Drag items here to create a new block</p>
                 <!-- <div id="createTab" class='sharedDrag' > </div> -->

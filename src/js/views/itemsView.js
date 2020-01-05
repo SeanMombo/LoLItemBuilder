@@ -67,6 +67,7 @@ export const addCloneListener = (item) => {
     item.addEventListener('mouseover', el => {
         itemsView.openDescription(item);
     });
+
 }
 
 export const getOffset = (t) => {
@@ -81,7 +82,8 @@ export const getWidth = (t) => {
 }
 
 export const openDescription = (item) => {
-    if (/*!item.parentNode.parentNode.classList.contains('dontFilter')*/1) 
+    
+    //if (item.parentNode.parentNode.parentNode.id === 'middle') 
     { 
         var item2 = item.parentNode.nextSibling.nextSibling;
         var t = $(item);
@@ -91,7 +93,7 @@ export const openDescription = (item) => {
 
         var height = getHeight(tooltip);
         const ypos = offset.top - $(window).scrollTop() - height - 24 - 28;
-        const xpos = offset.left - tooltip.width()/2 + 25 + 28;
+        const xpos = offset.left - tooltip.width()/2 ;
 
         window.mytimeout = setTimeout(function(){
             item2.style.visibility = 'visible';
@@ -100,7 +102,7 @@ export const openDescription = (item) => {
             tooltip.css({'top': ypos, 'left': xpos});
 
             if(ypos < 0) {
-                tooltip.css("top", ypos + height + 64 + 24);
+                tooltip.css("top", ypos + height + 64 + 24 + 30);
             }
             
             let m = $('#middle');
@@ -111,6 +113,6 @@ export const openDescription = (item) => {
                 tooltip.css("left", xpos + (mright-moff));
             }
             var t2 = $('.item-description:after')
-        }, 300);
+        }, 240);
     }
 }

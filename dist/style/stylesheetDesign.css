@@ -136,7 +136,6 @@ h2 {
     transform: rotate(45deg);
 }
 
-
 .custom-select-wrapper {
     position: relative;
     user-select: none;
@@ -145,6 +144,7 @@ h2 {
     margin-left:16px;
     
 }
+
 .custom-select {
     position: relative;
     display: flex;
@@ -340,9 +340,10 @@ h2 {
 .desc hr {
     border-width: 1px 0px 0px 0px;
 }
-.item-description stats {
+.item-description stats, .item-description stats * {
     color: rgb(0, 171, 196);
 }
+
 
 .item-description active, passive, unique{
     color: #f1c445de;
