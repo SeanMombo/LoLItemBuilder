@@ -1,4 +1,4 @@
-import jszip from 'jszip'
+//import jszip from 'jszip'
 import * as setView from '../views/setView';
 
 export default class Sets {
