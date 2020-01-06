@@ -112,6 +112,7 @@ const addListeners = () => {
         var $input = $('<input class="editTitle" type="text"/>').val( $el2.text() );
         $el2.replaceWith( $input );
         $input.click();
+        $input.select();
 
         var save = function(){
         var $p = $('<p class="titleText"/>').text( $input.val() );
@@ -128,15 +129,24 @@ const addListeners = () => {
         
     });
 
+    // open map button
+    $('#openMaps').on('click', e => {
+        let el = e.currentTarget;
+
+        setView.openDescription(el);
+    });
+
+
     // Export Set Button
     $('#exportSet').click(function () {
         state.sets.exportSet();
-        /*
-        const el = $('#sideRScroll')[0];
-        const sortArray = Sortable.get(el).toArray();
-
-        console.log($('.itemTab').data('id'));*/
     });
+
+    // Export Set Button
+    $('#stringSet').click(function () {
+        state.sets.stringSet();
+    });
+
 
      
     // clear filters button
@@ -182,7 +192,7 @@ const addListeners = () => {
     });
 
     
-
+    
 }
 
 const initPage = () => {

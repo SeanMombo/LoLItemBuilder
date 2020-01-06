@@ -105,6 +105,7 @@ export const openDescription = (item) => {
                 tooltip.css("top", ypos + height + 64 + 24 + 30);
             }
             
+            // push tooltip left if it exceeds right boundary
             let m = $('#middle');
             let mright = m.offset().left + m.width() - 16;
             let moff = (xpos + tooltip.width())
@@ -112,6 +113,12 @@ export const openDescription = (item) => {
             if(moff > mright) {
                 tooltip.css("left", xpos + (mright-moff));
             }
+
+            // push tooltip right if it exceeds left boundary
+            if(xpos < 0) {
+                tooltip.css("left", 16);
+            }
+
             var t2 = $('.item-description:after')
         }, 240);
     }

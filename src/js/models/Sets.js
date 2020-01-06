@@ -1,4 +1,5 @@
 import jszip from 'jszip'
+import * as setView from '../views/setView';
 
 export default class Sets {
     constructor () {
@@ -39,6 +40,25 @@ export default class Sets {
         this.download('testfile.json', json);
     }
 
+    stringSet() {
+        this.getSets();
+        this.addAllBlocks();
+
+        const json = JSON.stringify(this.exportObj);	
+        this.textToClipboard(json);
+
+        const el = document.querySelector('#stringSet');
+        setView.openDescription(el, 800);
+    }
+
+    textToClipboard (text) {
+        var dummy = document.createElement("textarea");
+        document.body.appendChild(dummy);
+        dummy.value = text;
+        dummy.select();
+        document.execCommand("copy");
+        document.body.removeChild(dummy);
+    }
     addAllBlocks() {
         // For each item tab
         this.blocks.forEach( el => {

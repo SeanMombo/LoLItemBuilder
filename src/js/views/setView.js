@@ -29,8 +29,8 @@ export const initSortables = () => {
             $(".itemTab").removeClass('itemhover');
     
             //remove description once we move to the item set lists
-            // if (evt.to !== evt.from)
-            //     evt.item.children[1].remove();
+            if (evt.to !== evt.from)
+                evt.item.children[1].remove();
         }, 
     
         // change createtab style while hovering an element over it
@@ -135,14 +135,25 @@ const makeTabBar = (itemTabEl) => {
     addTitleBar(itemTabBar);
     itemTabEl.appendChild(itemTabBar);
 
-    
-    $('.tabBarButtons .moveUp').click(function (e) {
+    $('.tabBarButtons .moveUp').unbind();
+    $('.tabBarButtons .moveDown').unbind();
+    $('.tabBarButtons .deleteTab').unbind();
+
+    $('.tabBarButtons .moveUp').on('click', function (e) {
+        console.log(e)
         const $el = $(this);
 
         const par = $el.parents('.itemTab');
         const i = par.index();
-        if (i > 0)
-            $( ".itemTab" ).eq(i-1).before($(par));
+        let prev;
+
+        if (i-1 >= 0)
+        {
+            prev = $( ".itemTab" ).eq(i-1);
+            if (i > 0) {
+                prev.before($(par));
+            }
+        }
     });
 
     $('.tabBarButtons .moveDown').click(function (e) {
@@ -150,7 +161,10 @@ const makeTabBar = (itemTabEl) => {
 
         const par = $el.parents('.itemTab');
         const i = par.index();
-        if (i < par.length)
+
+        const len = par.parent()[0].children.length;
+
+        if (i < len)
             $( ".itemTab" ).eq(i+1).after($(par));
     });
 
@@ -224,5 +238,74 @@ function makeSortableTab(sort) {
 
     return s;
 }
+
+export const getOffset = (t) => {
+    return t.offset();
+}
+
+export const getHeight = (t) => {
+    return t.height();
+}
+export const getWidth = (t) => {
+    return t.width();
+}
+
+export const openDescription = (item, timer = 0) => {
+    
+    //if (item.parentNode.parentNode.parentNode.id === 'middle') 
+    { 
+        var item2 = item.children[1];
+
+        var t = $(item);
+        var tooltip = $(item2);
+    
+        var offset = getOffset(t);
+
+        var height = getHeight(tooltip);
+        const ypos = offset.top - $(window).scrollTop() - height - 24 - 28;
+        const xpos = offset.left - tooltip.width()/2 ;
+
+        
+        item2.style.visibility = 'visible';
+        item2.style.opacity = 1;
+
+        if (timer != 0) {
+            clearTimeout(window.mytimeout);
+            tooltip.fadeIn(1);
+        }
+        // tooltip.toggleClass('bottom', (ypos < 0));
+        tooltip.css({'top': ypos, 'left': xpos});
+
+        if(ypos < 0) {
+            tooltip.css("top", ypos + height + 64 + 24 + 30);
+        }
+        
+        // // push tooltip left if it exceeds right boundary
+        // let m = $('#middle');
+        // let mright = m.offset().left + m.width() - 16;
+        // let moff = (xpos + tooltip.width())
+
+        // if(moff > mright) {
+        //     tooltip.css("left", xpos + (mright-moff));
+        // }
+
+        // // push tooltip right if it exceeds left boundary
+        // if(xpos < 0) {
+        //     tooltip.css("left", 16);
+        // }
+
+        if (timer != 0){
+            clearTimeout(window.mytimeout);
+            window.mytimeout = setTimeout(function(){
+                tooltip.fadeOut(timer/2);
+            }, timer/2);
+        }
+    }
+
+    
+}
+
+
+
 
 
