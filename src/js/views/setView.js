@@ -297,8 +297,8 @@ export const openDescription = (item, timer = 0) => {
         if (timer != 0){
             clearTimeout(window.mytimeout);
             window.mytimeout = setTimeout(function(){
-                tooltip.fadeOut(timer/2);
-            }, timer/2);
+                tooltip.fadeOut(timer/4);
+            }, timer);
         }
     }
 

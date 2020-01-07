@@ -35,13 +35,15 @@ body {
 
 #topbar {
     padding-top:10px;
-    padding-left:40px;
-    padding-bottom:40px;
-
+    
+    padding-bottom:10px;
+    margin-left:40px;
+    margin-right:40px;
     /* display:flex; */
     width:100%;
 
-    /* border: 2px solid #735d2c; */
+    border: 2px solid #735d2c;
+    border-width: 0 0 2 0;
 }
 
 #optionsbar {
@@ -72,7 +74,6 @@ body {
 }
 
 #openChamps, #openMaps {
-    
     border-radius: 15px 1px 15px;
 }
 
@@ -160,18 +161,17 @@ body {
 #sideL{
     color:#adbbc0;
     width:170px;
-    
 }
 
 #clearFilters {
     width:90%;
-    margin-bottom:20px;
+    margin-top:16px;
     height:36px;
     font-size:18px;
     background-color:rgba(0, 0, 0, 1);
     color:rgba(223, 210, 185, 0.863);
 
-
+    margin-bottom:-7px;
     border-width: 2px;
     border-color: #735d2c;
     border-style: ridge; 
@@ -201,6 +201,8 @@ body {
 #filterSection div {
     margin-top:4px;
     padding:2px;
+    margin-right:6px;
+    width:150px;
     /* border-bottom: 1px dotted rgba(255,255,255,0.2); */
 }
 
@@ -303,7 +305,7 @@ body {
 #sideR{
     /* background-color:blue; */
     margin-top:10px;
-    z-index:100;
+    
     display:flex;
     flex-direction:column;
     flex:3;
@@ -314,7 +316,7 @@ body {
 #sideRScroll { 
     margin-top:90px;
     /* margin-right:-20px; */
-    max-height: calc(75vh - 90px); 
+    max-height: calc(75vh - 180px);  
     overflow-y: scroll;
     overflow-x: hidden;
     padding-right:20px;
@@ -322,7 +324,7 @@ body {
 .searchbarWrapper{
     position: relative;
     flex:1;
-    display:flex;
+   
 }
 
 .searchbarWrapper img {
@@ -334,7 +336,7 @@ body {
 #searchbar {
     position:relative;
     height:36px;
-    flex:2;
+    flex:1;
     
     margin-left:-16px;
 
@@ -345,6 +347,101 @@ body {
     border-color: #735d2c;
     border-style: ridge;
 }
+
+.custom-select-wrapper {
+    position: relative;
+    user-select: none;
+    flex:1;
+    width:100px;
+    margin-left:16px;
+    
+}
+
+.custom-select {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    z-index:1;
+    padding-top:3px;
+    height:29px;
+    background-color:black;
+    
+    border-width: 2px;
+    border-color: #735d2c;
+    border-style: ridge;
+}
+.custom-select__trigger {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    
+    color:rgba(223, 210, 185, 0.863);
+    height: 60px;
+    line-height: 60px;
+    
+    cursor: pointer;
+
+    height:27px;
+}
+
+.custom-options {
+    position: absolute;
+    display: block;
+    top: 100%;
+    left: 0;
+    right: 0;
+    color:rgba(255,255,255,0.7);
+    background: black;
+    transition: all 0.1s;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    
+    margin-top:4px;
+    margin-left:-4px;
+    margin-right:-4px;
+    
+    border-width: 2px;
+    border-color: #735d2c;
+    border-style: ridge;
+    
+}
+.custom-select.open .custom-options {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+.custom-option {
+    position: relative;
+    display: block;
+    padding-left:12px;
+    
+    color: rgba(223, 210, 185, 0.863);
+    
+    cursor: pointer;
+    transition: all 0.5s;
+    height:27px;
+
+}
+
+.custom-option p{
+    padding-top:5px;
+}
+
+.custom-option:hover {
+    cursor: pointer;
+    background-color: #b2b2b22f;
+    color: #e7e3d4;
+    
+}
+
+.custom-option.selected {
+    color: #f1c445de;
+     background-color: #363d33; 
+}
+
 #searchbar:focus {
     /* outline:0; */
 }
@@ -362,7 +459,6 @@ Select{
 }
 #searchbardiv {
 
-    width:95 %;
     height:40px;
     margin:16px;
     margin-right:0px;
@@ -522,30 +618,55 @@ input[type="text"]
 } */
 
 @media (max-width: 960px) {
-    html,body{
+    html{
         overflow-y:scroll;
         overflow-x:hidden;
     }
     #middle {
-        overflow:visible;
-        height:100%;
+        z-index:50;
+        /* overflow:visible;
+        height:100%; */
+        height:40vh;
+        overflow-y:scroll;
+        border: 1px solid #735d2c;
+        border-width: 0 0 1 0;
+        padding-bottom:18px;
     }
     #mainSection {
+        z-index:50;
         flex-direction: column;
     }
 
     #sideL {
+        
         order:1;
+        width:100%;
+        border: 1px solid #735d2c;
+        border-width: 0 0 1 0;
+        padding-bottom:18px;
+    }
+    #clearFilters {
+        width:120px;
     }
     #filterSection {
         display:flex;
-        justify-content:space-evenly;
-        
+        justify-content:flex-start;
+        align-content:space-between;
         flex-wrap:wrap;
         flex-direction:row;
     }
+
+    #optionsbar {
+        position:absolute;
+    }
+    .settitle {
+        width:300px;
+    }
     #sideR {
+        z-index:-1;
         order:2;
+        margin-left:0px;
+        padding-left:0px;
     }
     #sideRScroll {
         height: 100%;

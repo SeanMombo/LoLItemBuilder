@@ -94,7 +94,8 @@ export const openDescription = (item) => {
         var height = getHeight(tooltip);
         const ypos = offset.top - $(window).scrollTop() - height - 24 - 28;
         const xpos = offset.left - tooltip.width()/2 ;
-
+        tooltip.css('z-index', 999);
+        
         window.mytimeout = setTimeout(function(){
             item2.style.visibility = 'visible';
             item2.style.opacity = 1;
@@ -118,8 +119,6 @@ export const openDescription = (item) => {
             if(xpos < 0) {
                 tooltip.css("left", 16);
             }
-
-            var t2 = $('.item-description:after')
         }, 240);
     }
 }
