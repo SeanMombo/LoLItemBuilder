@@ -1,6 +1,6 @@
 import * as itemsView from '../views/itemsView';
 import { elements , boxes} from '../base';
-
+import $ from 'jquery';
 
 
 export default class Search {

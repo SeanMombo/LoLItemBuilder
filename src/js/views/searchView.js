@@ -1,4 +1,5 @@
 import { elements } from '../base';
+import $ from 'jquery';
 
 export const getInput = () => elements.searchInput.value;
 

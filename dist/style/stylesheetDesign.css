@@ -20,12 +20,10 @@ h2 {
 .subtitle {
 
     z-index:90;
-    position:fixed;
-    bottom:4px;
-    right:8px;
+    
 }
 .subtitle, .subtitlelink {
-    font-family: 'Roboto', serif; font-size:20px; 
+    font-family: 'Roboto', serif; font-size:16px; 
     color:#c7bba0;
     margin:0px;
     margin-bottom:6px;

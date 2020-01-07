@@ -1,5 +1,6 @@
 //import jszip from 'jszip'
 import * as setView from '../views/setView';
+import $ from 'jquery';
 
 export default class Sets {
     constructor () {

@@ -1,6 +1,6 @@
 import { elements } from '../base';
 import * as itemsView from '../views/itemsView';
-
+import $ from 'jquery';
 
 export const addImage = (id, gold, title, description, tags, hidden) => {
     if (id == 3850) id = 3303;
@@ -83,7 +83,7 @@ export const getWidth = (t) => {
 
 export const openDescription = (item) => {
     
-    //if (item.parentNode.parentNode.parentNode.id === 'middle') 
+    if (item.parentNode.parentNode.parentNode.id === 'middle') 
     { 
         var item2 = item.parentNode.nextSibling.nextSibling;
         var t = $(item);

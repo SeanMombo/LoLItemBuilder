@@ -3,25 +3,43 @@
         <link rel="stylesheet" href="style/stylesheet.css">
         <link rel="stylesheet" href="style/stylesheetDesign.css">
         <meta name="viewport" content="width=device-width,initial-scale=1"> 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+        <meta charset="utf-8">
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,700&amp;subset=cyrillic' rel='stylesheet'>
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
       </head>
+
     <body>
 
-    <div id='descClonediv'></div>
+    <!-- <div id='descClonediv'></div> -->
+    
     
     <div id='topbar'>
-
-    </div>
-    <div id="mainSection">
+        <h1 class='title'>LoL Set Builder</h1>
         
+        
+    </div>
 
+    <p class='subtitle'>Made by: <a class='subtitlelink' href='http://www.seanmombo.com'>Sean Mombo</a></p>
+        <!-- 
+        <div id='topBar1'>
+            <div class='setTitle'>
+                <img
+                    src="/img/edit.svg" 
+                    alt="edit set title button"/>
+                <p class='setTitleText'>New Item Set Title</p>
+                <button id='exportSet'>Export Set</button>
+            </div>
+        </div>  -->
+
+    
+
+    <div id="mainSection">
         <aside id="sideL">
+            <button id='clearFilters'>Clear Filters</button>
             <div id="filterSection">
-                <button id='clearFilters'>Clear Filters</button>
+                
                 <div id="laneFilters">
                     <h2>STARTING ITEMS</h2> 
                     <label class="checkboxContainer"><input type="checkbox" name="hp" value="Jungle"><div>Jungle</div> <span class='checkmark'></span></label> 
@@ -31,7 +49,7 @@
                 <div id="toolFilters">
                     <h2>TOOLS</h2>
                     <label class="checkboxContainer"><input type="checkbox" name="hp" value="Consumable"><div>Consumable</div> <span class='checkmark'></span></label> 
-                    <label class="checkboxContainer"><input type="checkbox" name="ar" value="Gold" ><div>Gold Income</div> <span class='checkmark'></span></label> 
+                    <label class="checkboxContainer"><input type="checkbox" name="gold" value="GoldPer" ><div>Gold Income</div> <span class='checkmark'></span></label> 
                     <label class="checkboxContainer"><input type="checkbox" name="ar" value="Vision" ><div>Vision & Trinkets</div><span class='checkmark'></span></label> 
                 </div>
 
@@ -71,24 +89,17 @@
                     <span class='checkmark'></span></label> 
                     
                 </div>
-                <!--<div id="mapFilters">
-                    <h2>Map</h2>
-                    <input type="checkbox" name="rift" value="Bike">Summoner's Rift
-                    <input type="checkbox" name="tree" value="Car">Twisted Treeline
-                    <input type="checkbox" name="abyss" value="Boat">Howling Abyss
-                </div>-->
 
                 <div id="spedFilters">
                     <h2>MOVEMENT</h2>
-                    <label class="checkboxContainer"><input type="checkbox" name="ap" value="MagicPenetration"><div>Boots</div> 
+                    <label class="checkboxContainer"><input type="checkbox" name="ap" value="Boots"><div>Boots</div> 
                         <span class='checkmark'></span></label> 
-                        <label class="checkboxContainer"><input type="checkbox" name="ap" value="MagicPenetration"><div>Other Movement</div> 
+                        <label class="checkboxContainer"><input type="checkbox" name="ap" value='NonbootsMovement'><div>Other Movement</div> 
                             <span class='checkmark'></span></label> 
                 </div>
     
             </div>
-    
-                
+
         </aside>
 
         
@@ -97,19 +108,26 @@
                 <div class='searchbarWrapper'>
                     <input type="text" id="searchbar">
                     <img 
-                    src="/img/search.svg" 
-                    alt="searchbutton"
-                    height="20"
-                    width="20" />
+                        src="./img/search.svg" 
+                        alt="searchbutton"
+                        height="20"
+                        width="20" 
+                    />
                 </div>
-                
-                <select name="cars" >
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="fiat">Fiat</option>
-                    <option value="audi">Audi</option>
-                </select>
+                <div class="custom-select-wrapper">
+                    <div class="custom-select">
+                        <div class="custom-select__trigger"><span>Gold ▲</span>
+                            <!-- <div class="arrow"></div> -->
+                        </div>
+                        <div class="custom-options">
+                            <span class="custom-option selected" data-value="goldasc"><p>Gold  ▲</p> </span>
+                            <span class="custom-option" data-value="golddesc"><p>Gold  ▼</p></span>
+                            <span class="custom-option" data-value="nameasc"><p>Name  ▲</p></span>
+                            <span class="custom-option" data-value="namedesc"><p>Name  ▼</p></span>
+                        </div>
 
+                    </div>
+                </div>
                 
             </div>
 
@@ -118,16 +136,53 @@
 
         </div>
         <aside id="sideR">
+            <div id='optionBar'>
+               
+            </div>
             <div id='createTabDiv' class='sharedDrag'>
                 <p id='createtabp' class='disabled'>Drag items here to create a new block</p>
                 <!-- <div id="createTab" class='sharedDrag' > </div> -->
 
             </div>
+            <div id='optionsbar'>
+<!-- 
+                <button class='topBarButtons' id='openMaps'><img
+                    src="/img/map.svg" 
+                    alt="edit set title button"/>
+
+                    <span class="item-description">
+                        
+                    <span>
+
+                </button>
+
+                <button class='topBarButtons' id='openChamps'>
+                    <img
+                    src="/img/champ.svg" 
+                    alt="edit set title button"/>
+
+                    
+                </button> -->
+
+                <button class='topBarButtons' id='exportSet'>Download</button>
+                <button class='topBarButtons' id='stringSet'>Copy String <p></p><div class='item-description' style='width:300px;'>Item set copied to clipboard</div></button>
+
+                <div class='setTitle'>
+                    <img
+                        src="./img/edit.svg" 
+                        alt="edit set title button"/>
+                    <p class='setTitleText'>Untitled Item Set</p>
+                </div>
+            </div>
             <div id='sideRScroll'>
                 
             </div>
         </aside>
+        
     </div>
+    
+       
+    
 
     <div id="hidden-items"></div>
     <script type="text/javascript" src="js/bundle.js"></script></body>

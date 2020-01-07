@@ -12,6 +12,10 @@ module.exports = {
         filename: 'js/bundle.js'
     },
     devServer: {
+
+        host: '0.0.0.0',//your ip address
+        port: 8080,
+        disableHostCheck: true,
         contentBase: './dist'
     },
     plugins: [

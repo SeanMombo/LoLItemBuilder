@@ -5,7 +5,7 @@ html, body {
     overflow-x: hidden;
     overflow-y: hidden;
     max-width: 100%; 
-    height: auto;
+    
     
     font-family: 'Roboto'; font-size: 16px;
 }
@@ -34,7 +34,7 @@ body {
 }
 
 #topbar {
-    padding-top:10px;
+    
     
     padding-bottom:10px;
     margin-left:40px;
@@ -47,64 +47,32 @@ body {
 }
 
 #optionsbar {
-    position:fixed;
-    /* margin-top:-64px; */
+    /* position:fixed;
+ 
     margin-top:6px;
-    width: 500px;
-}
-.topBarButtons {
-    
-    background-color:rgba(0, 0, 0, 1);
-    color:rgb(153, 120,56);
-    border: 2px ridge #735d2c;
-    cursor: pointer;
-   
-    /* text-decoration: none; */
-    float:center;
-    padding:4px; 
-    
-    font-family: 'Roboto Slab', serif; font-size: 18px; 
-    transition: 100ms;
+    width: 500px; */
+    order:1;
+    display:flex;
+    justify-content: flex-start;
+    align-content: flex-start;
 
-    margin-top:4px;
-}
-.topBarButtons:hover {
-    background-color:rgb(63, 59, 39);
-    color:black;
+    margin-bottom:15px;
 }
 
-#openChamps, #openMaps {
-    border-radius: 15px 1px 15px;
-}
-
-#exportSet, #stringSet {
-    font-family: 'Roboto'; font-size: 18px;
-    float:left;
-    /* margin-left:50px; */
-    border: 4px thick #735d2c;
-
-    padding-left:10px;
-    padding-right:10px;
-    color:rgba(223, 210, 185, 0.863);
-    
-    padding-top:5px;
-    padding-bottom:5px;
-    margin:auto;
-    margin-right:16px;
-}
-#exportSet:hover, #stringSet:hover {
-    color:white;
-}
 
 .setTitle {
+    
     cursor:pointer;
     text-overflow:ellipsis;
-    width:400px;
+    width:300px;
     height:20px;
     padding-top:2px;
-    margin-bottom:12px;
-    margin-top:14px;
+    order:0;
     float:left;
+    flex: 1;
+    max-width:280px;
+    bottom:0;
+    margin-top:10px;
     /* background-color:rgba(0, 0, 0, 1);
     color:rgb(153, 120,56);
     border: 2px ridge #735d2c; */
@@ -121,6 +89,8 @@ body {
     color:rgb(205,189,148);
     float:left;
     padding-left:10px;
+    /* flex-grow:0; */
+    
 }
 
 .editTitle {
@@ -132,18 +102,67 @@ body {
     background-color:rgba(0, 0, 0, 0); 
     float:left;
     margin-top:-6px;
+    max-width:280px;
 }
 
+#exportSet, #stringSet {
+    font-family: 'Roboto'; font-size: 18px;
+    float:left;
+    /* margin-left:50px; */
+    border: 4px thick #735d2c;
 
+    padding-left:10px;
+    padding-right:10px;
+    color:rgba(223, 210, 185, 0.863);
+    
+    padding-top:5px;
+    padding-bottom:5px;
+    /* margin:auto; */
+    
+    order:1;
+    flex: 1;
+    max-width:120px;
 
+    min-height:40px;
+}
+#exportSet {
+    max-width:70px;
+    margin-right:18px;
+}
+#exportSet:hover, #stringSet:hover {
+    color:white;
+}
+.topBarButtons {
+    
+    background-color:rgba(0, 0, 0, 1);
+    color:rgb(153, 120,56);
+    border: 2px ridge #735d2c;
+    cursor: pointer;
+   
+    /* text-decoration: none; */
+    float:center;
+    padding:4px; 
+    
+    font-family: 'Roboto Slab', serif; font-size: 18px; 
+    transition: 100ms;
 
+}
+.topBarButtons:hover {
+    background-color:rgb(63, 59, 39);
+    color:black;
+}
+
+#openChamps, #openMaps {
+    border-radius: 15px 1px 15px;
+}
 
 #middleContainer {
     flex:1.9;
-    margin-bottom:64px;
-   
+    
+    margin-top:18px;
 
     z-index:1;
+    min-width:300px;
 }
 
 #middle {
@@ -161,12 +180,14 @@ body {
 #sideL{
     color:#adbbc0;
     width:170px;
+    margin-top:18px;
 }
 
 #clearFilters {
     width:90%;
-    margin-top:16px;
+    
     height:36px;
+
     font-size:18px;
     background-color:rgba(0, 0, 0, 1);
     color:rgba(223, 210, 185, 0.863);
@@ -176,6 +197,7 @@ body {
     border-color: #735d2c;
     border-style: ridge; 
     cursor: pointer;
+    
     
 }
 #clearFilters:hover {
@@ -202,7 +224,7 @@ body {
     margin-top:4px;
     padding:2px;
     margin-right:6px;
-    width:150px;
+    width:140px;
     /* border-bottom: 1px dotted rgba(255,255,255,0.2); */
 }
 
@@ -304,27 +326,44 @@ body {
 
 #sideR{
     /* background-color:blue; */
-    margin-top:10px;
+    margin-top:18px;
     
     display:flex;
     flex-direction:column;
     flex:3;
 
     padding-left:20px;
+    min-width:300px;
     /* padding-right:40px; */
 }
+#sideR2 {
+        
+      /* background-color:blue; */
+      margin-top:10px;
+    
+      display:flex;
+      flex-direction:column;
+      flex:3;
+      overflow: visible;
+      padding-left:20px;
+      /* padding-right:40px; */
+    
+}
 #sideRScroll { 
-    margin-top:90px;
+    
     /* margin-right:-20px; */
     max-height: calc(75vh - 180px);  
     overflow-y: scroll;
     overflow-x: hidden;
     padding-right:20px;
+    order:2;
 }
 .searchbarWrapper{
     position: relative;
-    flex:1;
-   
+    flex:9;
+    min-width: 0;
+    display:flex;
+
 }
 
 .searchbarWrapper img {
@@ -337,7 +376,7 @@ body {
     position:relative;
     height:36px;
     flex:1;
-    
+    min-width: 0;
     margin-left:-16px;
 
     padding-left:28px;
@@ -346,15 +385,28 @@ body {
     border-width: 2px;
     border-color: #735d2c;
     border-style: ridge;
+
+    
 }
 
+#searchbar:focus {
+    /* outline:0; */
+}
+#searchbardiv {
+    display:flex;
+    height:40px;
+    margin:16px;
+    margin-top:0px;
+    margin-right:0px;
+   
+}
 .custom-select-wrapper {
     position: relative;
     user-select: none;
     flex:1;
-    width:100px;
-    margin-left:16px;
     
+    margin-left:16px;
+    min-width:100px;
 }
 
 .custom-select {
@@ -370,6 +422,7 @@ body {
     border-color: #735d2c;
     border-style: ridge;
 }
+
 .custom-select__trigger {
     position: relative;
     display: flex;
@@ -442,9 +495,7 @@ body {
      background-color: #363d33; 
 }
 
-#searchbar:focus {
-    /* outline:0; */
-}
+
 Select{
     flex:1;
     margin-left:10px;
@@ -457,13 +508,6 @@ Select{
     border-color: #735d2c;
     border-style: ridge;
 }
-#searchbardiv {
-
-    height:40px;
-    margin:16px;
-    margin-right:0px;
-    display:flex;
- }
 
 input[type="text"]
 {
@@ -537,7 +581,7 @@ input[type="text"]
 
 .itemTabBar {
     order:-1;
-    height:23px;
+    height:24px;
     width:100%;
     background-color: rgba(255,255,255,.21);
     margin-top:-23px;
@@ -590,15 +634,20 @@ input[type="text"]
     color:rgb(205,189,148);
 }
 .moveUp, .moveDown, .deleteTab {
-    margin-top:2px;
+    margin-top:1px;
+
 }
 .moveUp:hover, .moveDown:hover, .deleteTab:hover {
     color:rgb(230, 222, 204);
 }
+.feather:hover {
+    stroke:rgb(255, 255, 255);
+}
+
 
 .deleteTab {
     margin-left:20px;
-    margin-top:-1px;
+
 }
 /* 
 #optionBar {
@@ -619,14 +668,24 @@ input[type="text"]
 
 @media (max-width: 960px) {
     html{
+        
         overflow-y:scroll;
         overflow-x:hidden;
     }
+    body { 
+       
+    }
+
+    #topbar {
+        margin:10;
+
+    }
     #middle {
+        
         z-index:50;
         /* overflow:visible;
         height:100%; */
-        height:40vh;
+        height:50vh;
         overflow-y:scroll;
         border: 1px solid #735d2c;
         border-width: 0 0 1 0;
@@ -635,10 +694,12 @@ input[type="text"]
     #mainSection {
         z-index:50;
         flex-direction: column;
+        padding:10px;
+        display:flex;
+        
     }
 
     #sideL {
-        
         order:1;
         width:100%;
         border: 1px solid #735d2c;
@@ -657,24 +718,47 @@ input[type="text"]
     }
 
     #optionsbar {
-        position:absolute;
+        
     }
     .settitle {
-        width:300px;
+        /* width:300px; */
     }
     #sideR {
-        z-index:-1;
+        z-index:0;
         order:2;
         margin-left:0px;
         padding-left:0px;
+        
+        flex: none;
+       
+    }
+
+    #sideR2 {
+        
+        order:2;
+        
     }
     #sideRScroll {
-        height: 100%;
+        /* height: 100%; */
         /* overflow: visible; */
+        /* max-height: calc(75vh - 180px);   */
     }
     #middleContainer {
         order:3;
+        
     }
+   
+}
+
+@media (max-width:400px) {
+    #optionsbar {
+        flex-direction:column-reverse;
+    }
+
+    #clearFilters {
+        min-height:50px;
+    }
+    
 }
 
 

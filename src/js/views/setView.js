@@ -1,7 +1,7 @@
 import Sortable from 'sortablejs/modular/sortable.complete.esm.js';
 import * as itemsView from './itemsView';
 import * as searchView from './searchView';
-
+import $ from 'jquery';
 
 
 // I need to use the set and setview classes to properly do MVC for the item set component.
@@ -180,14 +180,18 @@ const addTitleBar = (tab) => {
     const markup = `
         <div class='tabBarTitle'>
            <img 
-           src="/img/edit.svg" 
+           src="img/edit.svg" 
            alt="edit title button"/>
            <p class='titleText'>New Block</p>
         </div>
         <div class='tabBarButtons'>
-            <div class='moveUp'>▲</div>
-            <div class='moveDown'>▼</div>
-            <div class='deleteTab'>✖</div>
+            <div class='moveUp'charset='utf-8'>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(205,189,148)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="16 12 12 8 8 12"></polyline><line x1="12" y1="16" x2="12" y2="8"></line></svg> </div>
+            <div class='moveDown'charset='utf-8'>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(205,189,148)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg> </div>
+            <div class='deleteTab'charset='utf-8'>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(205,189,148)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+            </div>
         </div>
         
     `;

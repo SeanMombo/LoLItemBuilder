@@ -10,7 +10,6 @@ import * as searchView from './views/searchView';
 import * as setView from './views/setView';
 import Sortable from 'sortablejs/modular/sortable.complete.esm';
 
-
 /*
 $(function() {
 
@@ -32,7 +31,7 @@ const controlItems = async () => {
     
     try {
         await state.items.getDragon();
-        console.log(state.items.itemData);
+        //console.log(state.items.itemData);
         
         itemsView.addAllImages(state.items.getItems());
         state.items.addListeners();
@@ -46,7 +45,9 @@ const controlItems = async () => {
 
     } catch(error) {
         alert(error);
+        alert('control items');
     }
+
 };
 
 const initSet = () => {
@@ -64,6 +65,7 @@ const controlSearch = (query) => {
 
     } catch(error) {
         alert(error);
+        alert('control set');
     }
 };
 
