@@ -105,10 +105,14 @@ export const openDescription = (item) => {
             if(ypos < 0) {
                 tooltip.css("top", ypos + height + 64 + 24 + 30);
             }
+
+            if(ypos > 0) {
+                tooltip.css("top", ypos + height + 64 + 24 + 30);
+            }
             
             // push tooltip left if it exceeds right boundary
             let m = $('#middle');
-            let mright = m.offset().left + m.width() - 16;
+            let mright = m.offset().left + m.width() - 32;
             let moff = (xpos + tooltip.width())
 
             if(moff > mright) {
@@ -118,6 +122,12 @@ export const openDescription = (item) => {
             // push tooltip right if it exceeds left boundary
             if(xpos < 0) {
                 tooltip.css("left", 16);
+            }
+
+            if (/Mobi|Android/i.test(navigator.userAgent)) {
+                const dwidth = tooltip.width()/80 * 100;
+                const off = (dwidth - tooltip.width())/4;
+                tooltip.css({'top': 16, 'left': off});
             }
         }, 240);
     }

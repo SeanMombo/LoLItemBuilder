@@ -751,14 +751,25 @@ input[type="text"]
 }
 
 @media (max-width:400px) {
+    .setTitle {
+        min-width:400px;
+        order:6;
+    }
     #optionsbar {
-        flex-direction:column-reverse;
+        flex-direction:row;
+        flex-wrap:wrap;
+        align-content:center;
+        justify-content:flex-start;
+
     }
 
     #clearFilters {
         min-height:50px;
     }
     
+    .item-description {
+        width: 80vw;
+    }
 }
 
 

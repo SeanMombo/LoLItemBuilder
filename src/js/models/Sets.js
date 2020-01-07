@@ -38,7 +38,7 @@ export default class Sets {
         this.addAllBlocks();
 
         const json = JSON.stringify(this.exportObj);	
-        this.download('testfile.json', json);
+        this.download(`${this.exportObj.title}.json`, json);
     }
 
     stringSet() {
