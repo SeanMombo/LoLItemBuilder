@@ -63,6 +63,8 @@ export default class Items {
                 {
                     item2.style.visibility = 'hidden';
                     item2.style.opacity = 0;
+                    const img = item.children[0].children[0];
+                    img.setAttribute('style', '');
                 }
             });
         });

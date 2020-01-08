@@ -62,6 +62,9 @@ export const addCloneListener = (item) => {
         clearTimeout(window.mytimeout);
         item2.style.visibility = 'hidden';
         item2.style.opacity = 0;
+
+        const img = item.children[0].children[0];
+        img.setAttribute('style', '');
     });
 
     item.addEventListener('mouseover', el => {
@@ -136,6 +139,11 @@ export const getWidth = (t) => {
 
 export const openDescription2 = (item) => {
     
+    const img = item.children[0].children[0];
+
+    img.setAttribute('style', 'border: 1px solid rgba(211, 204, 172, 0.904)');
+
+
     if (item.parentNode.id === 'middle') 
     { 
         var item2 = item.children[1];

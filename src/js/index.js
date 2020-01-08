@@ -84,6 +84,10 @@ const addListeners = () => {
     Second argument makes sure the callback only fires when 
     the `click` event happens only on elements marked as `data-editable`
     */
+
+    
+
+
     $('body').on('click', '.setTitle', function(){
     
         var $el = $(this)
