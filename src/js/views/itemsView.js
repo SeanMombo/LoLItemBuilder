@@ -57,7 +57,7 @@ export const sortAllImages = (items) => {
 
 export const addCloneListener = (item) => {
         
-    let item2 = item.parentNode.nextSibling.nextSibling;
+    let item2 = item.children[1];//.parentNode.nextSibling.nextSibling;
     item.addEventListener('mouseout', function() {
         clearTimeout(window.mytimeout);
         item2.style.visibility = 'hidden';
@@ -65,7 +65,7 @@ export const addCloneListener = (item) => {
     });
 
     item.addEventListener('mouseover', el => {
-        itemsView.openDescription(item);
+        itemsView.openDescription2(item);
     });
 
 }
@@ -81,11 +81,64 @@ export const getWidth = (t) => {
     return t.width();
 }
 
-export const openDescription = (item) => {
+// export const openDescription = (item) => {
     
-    if (item.parentNode.parentNode.parentNode.id === 'middle') 
+//     if (item.parentNode.parentNode.parentNode.id === 'middle') 
+//     { 
+//         var item2 = item.parentNode.nextSibling.nextSibling;
+//         var t = $(item);
+//         var tooltip = $(item2);
+    
+//         var offset = getOffset(t);
+
+//         var height = getHeight(tooltip);
+//         const ypos = offset.top - $(window).scrollTop() - height - 24 - 28;
+//         const xpos = offset.left - tooltip.width()/2 ;
+//         tooltip.css('z-index', 999);
+        
+//         window.mytimeout = setTimeout(function(){
+//             item2.style.visibility = 'visible';
+//             item2.style.opacity = 1;
+//             // tooltip.toggleClass('bottom', (ypos < 0));
+//             tooltip.css({'top': ypos, 'left': xpos});
+
+//             if(ypos < 0) {
+//                 tooltip.css("top", ypos + height + 64 + 24 + 30);
+//             }
+
+//             if(ypos > 0) {
+//                 tooltip.css("top", ypos + height + 64 + 24 + 30);
+//             }
+            
+//             // push tooltip left if it exceeds right boundary
+//             let m = $('#middle');
+//             let mright = m.offset().left + m.width() - 32;
+//             let moff = (xpos + tooltip.width())
+
+//             if(moff > mright) {
+//                 tooltip.css("left", xpos + (mright-moff));
+//             }
+
+//             // push tooltip right if it exceeds left boundary
+//             if(xpos < 0) {
+//                 tooltip.css("left", 16);
+//             }
+
+//             if (/Mobi|Android/i.test(navigator.userAgent)) {
+//                 const dwidth = tooltip.width()/80 * 100;
+//                 const off = (dwidth - tooltip.width())/4;
+//                 tooltip.css({'top': 16, 'left': off});
+//             }
+//         }, 240);
+//     }
+// }
+
+
+export const openDescription2 = (item) => {
+    
+    if (item.parentNode.id === 'middle') 
     { 
-        var item2 = item.parentNode.nextSibling.nextSibling;
+        var item2 = item.children[1];
         var t = $(item);
         var tooltip = $(item2);
     
@@ -106,9 +159,9 @@ export const openDescription = (item) => {
                 tooltip.css("top", ypos + height + 64 + 24 + 30);
             }
 
-            if(ypos > 0) {
-                tooltip.css("top", ypos + height + 64 + 24 + 30);
-            }
+            // if(ypos > 0) {
+            //     tooltip.css("top", ypos + height + 64 + 24 + 30);
+            // }
             
             // push tooltip left if it exceeds right boundary
             let m = $('#middle');

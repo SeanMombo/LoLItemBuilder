@@ -55,10 +55,10 @@ export default class Items {
 
     
     addListeners() {
-        [...document.querySelectorAll('.item-img')].forEach(function(item) {
+        [...document.querySelectorAll('.item-module')].forEach(function(item) {
             item.addEventListener('mouseout', function() {
                 clearTimeout(window.mytimeout);
-                let item2 = item.parentNode.nextSibling.nextSibling;
+                let item2 = item.children[1];//.parentNode.nextSibling.nextSibling;
                 //if (item.parentNode.parentNode.parentNode.id === 'middle')
                 {
                     item2.style.visibility = 'hidden';
@@ -67,6 +67,8 @@ export default class Items {
             });
         });
     }
+
+
     getItems() {
         return this.items;
     }

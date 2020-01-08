@@ -18,11 +18,7 @@ export const initSortables = () => {
         forceFallback: true, 
         filter: '.dontdrag',
         sort: false,
-        onChoose: function (evt) { $("#myTaskList").css('cursor', 'grabbing'); },
-        onStart: function (evt) { 
-            $("#myTaskList").css('cursor', 'grabbing'); 
-    
-        }, 
+
         onEnd: function (evt) { 
             $("#myTaskList").css('cursor', 'grab'); 
             $("#createTabDiv").removeClass('itemhover');
@@ -55,8 +51,9 @@ export const initSortables = () => {
             
             if (evt.to !== evt.from)
                 item.classList.add('dontFilter');
-            let item2 = clone.children[0].children[0];
-    
+
+            let item2 = clone;//.children[0].children[0];
+            console.log(item2);
             itemsView.addCloneListener(item2);
             searchView.addSingleSearch(clone);
     
@@ -140,7 +137,7 @@ const makeTabBar = (itemTabEl) => {
     $('.tabBarButtons .deleteTab').unbind();
 
     $('.tabBarButtons .moveUp').on('click', function (e) {
-        console.log(e)
+        //console.log(e)
         const $el = $(this);
 
         const par = $el.parents('.itemTab');
@@ -216,7 +213,7 @@ function makeSortableTab(sort) {
             $(".itemTab").removeClass('itemhover');
             $(evt.to).closest(".itemTab").addClass('itemhover');
 
-            console.log(evt.dragged);
+            //console.log(evt.dragged);
         }, 
         onEnd: function (evt) { 
             $("#myTaskList").css('cursor', 'grab'); 
@@ -293,10 +290,10 @@ export const openDescription = (item, timer = 0) => {
         //     tooltip.css("left", xpos + (mright-moff));
         // }
 
-        // // push tooltip right if it exceeds left boundary
-        // if(xpos < 0) {
-        //     tooltip.css("left", 16);
-        // }
+        // push tooltip right if it exceeds left boundary
+        if(xpos < 0) {
+            tooltip.css("left", 16);
+         }
 
         if (timer != 0){
             clearTimeout(window.mytimeout);

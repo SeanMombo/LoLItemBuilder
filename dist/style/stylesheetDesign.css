@@ -34,6 +34,14 @@ h2 {
     color:#f5f0e5;
 }
 
+#middle {
+    scrollbar-color: #735d2c rgba(0, 0, 0, 0.151);
+    scrollbar-width: thin;
+}
+#sideRScroll {
+    scrollbar-color: #735d2c rgba(0, 0, 0, 0.151);
+    scrollbar-width: thin;
+}
 #middle::-webkit-scrollbar{
     width: 8px;
 } 

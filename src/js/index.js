@@ -37,9 +37,10 @@ const controlItems = async () => {
         state.items.addListeners();
 
         // Open item description on mouseover
-        [...document.querySelectorAll('.item-img')].forEach(function(item) {
+        [...document.querySelectorAll('.item-module')].forEach(function(item) {
             item.addEventListener('mouseover', el => {
-                itemsView.openDescription(item);
+                //itemsView.openDescription(item);
+                itemsView.openDescription2(item);
             });
         });
 
@@ -218,7 +219,5 @@ const initPage = () => {
 }
 
 window.addEventListener('load', initPage);
-
-//// MIDDLE SORTABLE 
 
 

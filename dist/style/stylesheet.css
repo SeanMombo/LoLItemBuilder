@@ -169,7 +169,7 @@ body {
     flex:1;
     display:flex;
     flex-wrap:wrap;
-    justify-content:center;
+    justify-content:flex-start;
     align-content:flex-start;
     
     height: calc(95vh - 162px);
@@ -264,7 +264,6 @@ body {
 
 .item-module {
     margin-right:20px;
-
     position:relative;
     overflow:visible;
 }
@@ -281,11 +280,21 @@ body {
     position:sticky;
     text-align:center;
 }
+
+.item-module:after  {
+    position: absolute;
+    content: '';
+    top:0;
+    bottom: 0;
+    right:0;
+    left:0;
+}
+
 /* used to be item-module .item-description.right */
 .item-description {
     z-index: 999999;
     /* transform:translateX(-50%); */
-    
+
     border: 1px solid rgba(233, 188, 42, 0.856);
     background-color: rgb(1,10,18);
     color: #fff;
@@ -626,22 +635,31 @@ input[type="text"]
 }
 
 .tabBarButtons {
+    
     float:right;
 }
 .tabBarButtons * {
     float:left;
     padding-left:4px;
     color:rgb(205,189,148);
+    
 }
 .moveUp, .moveDown, .deleteTab {
     margin-top:1px;
-
+    cursor: pointer;
 }
 .moveUp:hover, .moveDown:hover, .deleteTab:hover {
     color:rgb(230, 222, 204);
+    
 }
+
+svg {
+    
+}
+
 .feather:hover {
     stroke:rgb(255, 255, 255);
+    
 }
 
 
