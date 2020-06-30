@@ -1,4 +1,4 @@
-# LoLItemBuilder
+# LoL Set Builder
 League of Legends is one of the most popular games in the world. When I built this app, there were third-party web apps that existed, but they did not work properly on mobile.
 The goal of this project was to fill this gap in mobile functionality.
 
@@ -14,3 +14,4 @@ The goal of this project was to fill this gap in mobile functionality.
 - HTML + SCSS
 - React
 - MVC pattern
+- Fetches item data from DataDragon API 
