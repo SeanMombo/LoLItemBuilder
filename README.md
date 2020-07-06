@@ -2,6 +2,9 @@
 League of Legends is one of the most popular games in the world. When I built this app, there were third-party web apps that existed, but they did not work properly on mobile.
 The goal of this project was to fill this gap in mobile functionality.
 
+## Live Project
+http://seanmombo.com/lolsetbuilder/index
+
 ## Features
 - Search for items
 - Sort items by parameters such as gold cost, or attack damage
